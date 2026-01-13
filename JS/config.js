@@ -1,7 +1,7 @@
 // config.js
 const WHATSAPP_BASE = "https://wa.me/949626583?text=";
 const URL_BASE_MODELO =
-  "https://gisyl-mood.netlify.app/html/productos#";
+  "https://bloodcmen-droid.github.io/HTML/Productos#";
 
 
 
