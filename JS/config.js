@@ -1,10 +1,7 @@
 // config.js
 const WHATSAPP_BASE = "https://wa.me/949626583?text=";
 const URL_BASE_MODELO =
-  "https://bloodcmen-droid.github.io/HTML/Productos.html?producto=";
-
-
-
+  "https://bloodcmen-droid.github.io/HTML/Productos.html#";
 
 let lastScroll = 0;
 const navbar = document.querySelector(".navbar-hm");
@@ -32,7 +29,6 @@ window.addEventListener("scroll", () => {
 
   lastScroll = currentScroll;
 });
-
 
 
 

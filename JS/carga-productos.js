@@ -1,5 +1,3 @@
-
-
 document.addEventListener("DOMContentLoaded", () => {
 
   // 🔹 Relación contenedor ↔ productos
@@ -16,11 +14,12 @@ document.addEventListener("DOMContentLoaded", () => {
     { contenedorId: "productos-Pijamas",            productos: productosPijamas }
   ];
 
-  // 🔹 Render por lotes
+  // 🔹 Render por lotes (seguro para rendimiento)
   function renderSeccionPorLotes(contenedorId, productos, lote = 6) {
     const contenedor = document.getElementById(contenedorId);
-    if (!contenedor) return;
+    if (!contenedor || contenedor.dataset.rendered) return;
 
+    contenedor.dataset.rendered = "true";
     let index = 0;
 
     function renderLote() {
@@ -98,6 +97,13 @@ document.addEventListener("DOMContentLoaded", () => {
     if (contenedor) observer.observe(contenedor);
   });
 
+  // 🔹 Si viene con #ID → renderizar todo
+  if (window.location.hash) {
+    secciones.forEach(s => {
+      renderSeccionPorLotes(s.contenedorId, s.productos);
+    });
+  }
+
 });
 
 // 🔹 MODAL
@@ -122,15 +128,15 @@ function abrirModalProducto(p) {
     document.getElementById("modalProducto")
   ).show();
 }
-// 🔹 Scroll automático por ?producto=ID (espera render dinámico)
-(function scrollAlProducto() {
 
-  const params = new URLSearchParams(window.location.search);
-  const productoId = params.get("producto");
+// 🔹 Scroll automático por HASH (#ID)
+(function scrollPorHash() {
+
+  const productoId = window.location.hash.replace("#", "");
   if (!productoId) return;
 
   let intentos = 0;
-  const maxIntentos = 30; // ~3 segundos
+  const maxIntentos = 40;
 
   const buscarProducto = setInterval(() => {
     const target = document.getElementById(productoId);
