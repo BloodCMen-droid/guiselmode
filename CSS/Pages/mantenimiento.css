@@ -1,0 +1,454 @@
+/* ═══════════════════════════════════════════════
+   mantenimiento.css
+   Estilos para el panel de administración.
+   Reutiliza productos.css + agrega lo específico.
+═══════════════════════════════════════════════ */
+
+/* ── HERO override ── */
+.mant-hero {
+  background:
+    radial-gradient(ellipse 55% 60% at 50% 0%, rgba(224,28,28,.1) 0%, transparent 70%),
+    var(--bg-primary);
+}
+.mant-hero .productos-hero__tag {
+  color: var(--accent-red);
+}
+
+/* ── BARRA ADMIN ── */
+.mant-admin-bar {
+  padding: 20px 0;
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: var(--navbar-height);
+  z-index: 90;
+}
+
+.admin-bar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.admin-bar__stats {
+  display: flex;
+  gap: 32px;
+}
+
+.admin-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.admin-stat__val {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  letter-spacing: .05em;
+  color: var(--accent-red);
+  line-height: 1;
+}
+
+.admin-stat__label {
+  font-size: .7rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: .1em;
+}
+
+.mant-btn-nuevo {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  font-size: .85rem;
+}
+
+/* ── CARD ADMIN (extiende product-card) ── */
+.product-card--admin {
+  position: relative;
+}
+
+/* Borde rojo sutil para diferenciar del catálogo normal */
+.product-card--admin::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(224,28,28,.15);
+  pointer-events: none;
+  transition: border-color .3s;
+}
+.product-card--admin:hover::after {
+  border-color: rgba(224,28,28,.4);
+}
+
+/* Botones de acción superpuestos sobre la imagen */
+.card-admin-actions {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  gap: 6px;
+  z-index: 10;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity .25s, transform .25s;
+}
+
+.product-card--admin:hover .card-admin-actions {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card-admin-btn {
+  width: 34px;
+  height: 34px;
+  border: none;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .85rem;
+  cursor: pointer;
+  transition: all .2s;
+  backdrop-filter: blur(6px);
+}
+
+.card-admin-btn--edit {
+  background: rgba(10,10,10,.85);
+  color: var(--text-primary);
+  border: 1px solid rgba(255,255,255,.15);
+}
+.card-admin-btn--edit:hover {
+  background: var(--accent-red);
+  border-color: var(--accent-red);
+}
+
+.card-admin-btn--delete {
+  background: rgba(224,28,28,.85);
+  color: #fff;
+  border: 1px solid rgba(224,28,28,.5);
+}
+.card-admin-btn--delete:hover {
+  background: #ff2e2e;
+}
+
+/* ── MODAL PRODUCTO (inyectado por JS) ── */
+.mant-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.8);
+  backdrop-filter: blur(6px);
+  z-index: 500;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 60px 16px 40px;
+  overflow-y: auto;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .3s, visibility .3s;
+}
+.mant-modal-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mant-modal {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  width: 100%;
+  max-width: 680px;
+  padding: 0;
+  position: relative;
+  transform: translateY(-20px);
+  transition: transform .3s;
+  overflow: hidden;
+}
+.mant-modal-overlay.open .mant-modal {
+  transform: translateY(0);
+}
+
+/* Línea roja top */
+.mant-modal::before {
+  content: '';
+  display: block;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent-red), transparent);
+}
+
+.mant-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 32px 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.mant-modal__title {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  letter-spacing: .08em;
+}
+.mant-modal__title em {
+  color: var(--accent-red);
+  font-style: normal;
+}
+
+.mant-modal__close {
+  width: 32px; height: 32px;
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all .2s;
+  flex-shrink: 0;
+}
+.mant-modal__close:hover {
+  border-color: var(--accent-red);
+  color: var(--accent-red);
+}
+
+.mant-modal__body {
+  padding: 28px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Grupos de formulario */
+.mant-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.mant-form-group {
+  margin-bottom: 18px;
+}
+
+.mant-form-group label {
+  display: block;
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+.mant-form-group input,
+.mant-form-group select,
+.mant-form-group textarea {
+  width: 100%;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  padding: 11px 14px;
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: .9rem;
+  transition: border-color .2s;
+  border-radius: 0;
+  -webkit-appearance: none;
+}
+.mant-form-group input:focus,
+.mant-form-group select:focus,
+.mant-form-group textarea:focus {
+  outline: none;
+  border-color: var(--accent-red);
+}
+.mant-form-group textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+.mant-form-group select option {
+  background: var(--bg-secondary);
+}
+
+/* Tallas checkboxes */
+.mant-tallas-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 6px;
+}
+.mant-talla-cb { display: none; }
+.mant-talla-lbl {
+  padding: 6px 14px;
+  border: 1px solid var(--border);
+  font-size: .8rem;
+  font-weight: 600;
+  letter-spacing: .06em;
+  cursor: pointer;
+  color: var(--text-secondary);
+  transition: all .2s;
+}
+.mant-talla-cb:checked + .mant-talla-lbl {
+  border-color: var(--accent-red);
+  background: rgba(224,28,28,.1);
+  color: var(--accent-red);
+}
+
+/* Upload imágenes */
+.mant-upload-area {
+  border: 1px dashed rgba(255,255,255,.15);
+  padding: 24px;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+  transition: border-color .2s;
+}
+.mant-upload-area:hover { border-color: var(--accent-red); }
+.mant-upload-area input[type="file"] {
+  position: absolute; inset: 0; opacity: 0;
+  cursor: pointer; width: 100%; height: 100%;
+}
+.mant-upload-area__icon { font-size: 1.8rem; margin-bottom: 8px; }
+.mant-upload-area p { font-size: .85rem; color: var(--text-secondary); }
+.mant-upload-area small { font-size: .75rem; color: var(--text-muted); }
+
+.mant-upload-progress {
+  font-size: .8rem;
+  color: var(--accent-red);
+  margin-top: 8px;
+  min-height: 18px;
+  text-align: center;
+}
+
+.mant-img-preview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 12px;
+}
+.mant-img-preview__item {
+  position: relative;
+  width: 76px; height: 76px;
+}
+.mant-img-preview__item img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  border: 1px solid var(--border);
+}
+.mant-img-preview__remove {
+  position: absolute;
+  top: -6px; right: -6px;
+  width: 20px; height: 20px;
+  background: var(--accent-red);
+  color: #fff; border: none;
+  border-radius: 50%;
+  font-size: .65rem;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+}
+
+/* Footer modal */
+.mant-modal__footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 20px 32px 28px;
+  border-top: 1px solid var(--border);
+}
+
+/* ── MODAL CONFIRMACIÓN ── */
+.mant-confirm__msg {
+  padding: 24px 32px;
+  color: var(--text-secondary);
+  font-size: .95rem;
+  line-height: 1.6;
+}
+.mant-confirm__msg strong {
+  color: var(--text-primary);
+  display: block;
+  margin-bottom: 6px;
+}
+.mant-confirm__warn {
+  font-size: .82rem;
+  color: var(--text-muted);
+  margin-top: 8px;
+}
+
+/* ── TOAST ── */
+.mant-toast {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: 14px 22px;
+  font-size: .88rem;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity .25s, transform .25s;
+  max-width: 320px;
+}
+.mant-toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+.mant-toast--ok  { border-color: #5cb85c; color: #5cb85c; }
+.mant-toast--err { border-color: var(--accent-red); color: var(--accent-red); }
+
+/* ── LOADER ── */
+.mant-loader {
+  display: inline-block;
+  width: 16px; height: 16px;
+  border: 2px solid var(--border);
+  border-top-color: var(--accent-red);
+  border-radius: 50%;
+  animation: mant-spin .6s linear infinite;
+  vertical-align: middle;
+  margin-right: 6px;
+}
+@keyframes mant-spin { to { transform: rotate(360deg); } }
+
+/* ── CARD vacía (cuando no hay productos en categoría) ── */
+.mant-empty-cat {
+  grid-column: 1 / -1;
+  padding: 40px;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: .85rem;
+  border: 1px dashed var(--border);
+}
+
+/* ── BTN outline para modal ── */
+.btn-outline-mant {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  background: transparent;
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: .85rem;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: all .2s;
+}
+.btn-outline-mant:hover {
+  border-color: var(--accent-red);
+  color: var(--accent-red);
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .admin-bar__inner { flex-direction: column; align-items: flex-start; }
+  .admin-bar__stats { gap: 20px; }
+  .mant-form-row    { grid-template-columns: 1fr; }
+  .mant-modal__body,
+  .mant-modal__header,
+  .mant-modal__footer { padding-left: 20px; padding-right: 20px; }
+}

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 — Página no encontrada | G&M G'ysil Mood</title>
+  <meta name="robots" content="noindex, nofollow">
+
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <style>
+    :root {
+      --bg-primary:       #0a0a0a;
+      --bg-secondary:     #111111;
+      --bg-card:          #161616;
+      --accent-red:       #e01c1c;
+      --accent-red-hover: #ff2e2e;
+      --text-primary:     #f0f0f0;
+      --text-secondary:   #888888;
+      --border:           rgba(255,255,255,0.07);
+      --font-display:     'Bebas Neue', sans-serif;
+      --font-body:        'Outfit', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-thumb { background: var(--accent-red); border-radius: 10px; }
+
+    /* ── FONDO ANIMADO ── */
+    .bg-lines {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .bg-lines span {
+      position: absolute;
+      display: block;
+      width: 1px;
+      height: 100%;
+      background: linear-gradient(to bottom, transparent, rgba(224,28,28,.08), transparent);
+      animation: lineFall 6s linear infinite;
+      top: -100%;
+    }
+    .bg-lines span:nth-child(1)  { left: 10%; animation-delay: 0s;   animation-duration: 7s; }
+    .bg-lines span:nth-child(2)  { left: 20%; animation-delay: 1s;   animation-duration: 5s; }
+    .bg-lines span:nth-child(3)  { left: 30%; animation-delay: 2s;   animation-duration: 8s; }
+    .bg-lines span:nth-child(4)  { left: 40%; animation-delay: 0.5s; animation-duration: 6s; }
+    .bg-lines span:nth-child(5)  { left: 50%; animation-delay: 1.5s; animation-duration: 7s; }
+    .bg-lines span:nth-child(6)  { left: 60%; animation-delay: 3s;   animation-duration: 5s; }
+    .bg-lines span:nth-child(7)  { left: 70%; animation-delay: 2.5s; animation-duration: 9s; }
+    .bg-lines span:nth-child(8)  { left: 80%; animation-delay: 0.8s; animation-duration: 6s; }
+    .bg-lines span:nth-child(9)  { left: 90%; animation-delay: 1.8s; animation-duration: 7s; }
+
+    @keyframes lineFall {
+      0%   { top: -100%; opacity: 0; }
+      10%  { opacity: 1; }
+      90%  { opacity: 1; }
+      100% { top: 100%; opacity: 0; }
+    }
+
+    /* ── CONTENIDO ── */
+    .container-404 {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 40px 24px;
+      max-width: 600px;
+    }
+
+    /* Logo */
+    .logo-404 {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      letter-spacing: .1em;
+      margin-bottom: 48px;
+      opacity: .6;
+    }
+    .logo-404 span { color: var(--accent-red); }
+
+    /* Número 404 */
+    .num-404 {
+      font-family: var(--font-display);
+      font-size: clamp(8rem, 25vw, 14rem);
+      letter-spacing: .05em;
+      line-height: 1;
+      background: linear-gradient(135deg, var(--accent-red) 0%, #7a0000 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      position: relative;
+      display: inline-block;
+      animation: glitch 4s infinite;
+    }
+
+    @keyframes glitch {
+      0%, 90%, 100% { transform: translate(0); filter: none; }
+      91%  { transform: translate(-2px, 1px); filter: hue-rotate(20deg); }
+      92%  { transform: translate(2px, -1px); filter: hue-rotate(-20deg); }
+      93%  { transform: translate(0); filter: none; }
+      94%  { transform: translate(1px, 2px); filter: hue-rotate(10deg); }
+      95%  { transform: translate(0); filter: none; }
+    }
+
+    /* Línea decorativa */
+    .divider-404 {
+      width: 60px;
+      height: 2px;
+      background: var(--accent-red);
+      margin: 16px auto 28px;
+    }
+
+    .title-404 {
+      font-family: var(--font-display);
+      font-size: clamp(1.4rem, 4vw, 2rem);
+      letter-spacing: .08em;
+      margin-bottom: 14px;
+    }
+    .title-404 em {
+      color: var(--accent-red);
+      font-style: normal;
+    }
+
+    .desc-404 {
+      font-size: .95rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 40px;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Botones */
+    .btns-404 {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary-404 {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 28px;
+      background: var(--accent-red);
+      color: #fff;
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: .85rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: all .3s;
+      clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+    }
+    .btn-primary-404:hover {
+      background: var(--accent-red-hover);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline-404 {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 26px;
+      background: transparent;
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: .85rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: all .3s;
+    }
+    .btn-outline-404:hover {
+      border-color: var(--accent-red);
+      color: var(--accent-red);
+      transform: translateY(-2px);
+    }
+
+    /* Links rápidos */
+    .quick-links {
+      margin-top: 48px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+    }
+    .quick-links p {
+      font-size: .75rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: .15em;
+      margin-bottom: 16px;
+    }
+    .quick-links__grid {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .quick-link {
+      padding: 7px 16px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      font-size: .8rem;
+      text-decoration: none;
+      transition: all .2s;
+    }
+    .quick-link:hover {
+      border-color: var(--accent-red);
+      color: var(--accent-red);
+    }
+
+    /* Entrada animada */
+    .container-404 {
+      animation: fadeUp .6s ease both;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Líneas de fondo -->
+  <div class="bg-lines">
+    <span></span><span></span><span></span>
+    <span></span><span></span><span></span>
+    <span></span><span></span><span></span>
+  </div>
+
+  <div class="container-404">
+
+    <div class="logo-404">G<span>&</span>M</div>
+
+    <div class="num-404">404</div>
+    <div class="divider-404"></div>
+
+    <h1 class="title-404">PÁGINA <em>NO ENCONTRADA</em></h1>
+    <p class="desc-404">
+      La página que buscas no existe o fue movida.<br>
+      Pero nuestras prendas personalizadas sí están aquí 😊
+    </p>
+
+    <div class="btns-404">
+      <a href="/guiselmode/index.html" class="btn-primary-404">
+        <i class="fa-solid fa-house"></i> Volver al inicio
+      </a>
+      <a href="/guiselmode/HTML/Productos.html" class="btn-outline-404">
+        <i class="fa-solid fa-shirt"></i> Ver productos
+      </a>
+    </div>
+
+    <div class="quick-links">
+      <p>O explora directamente</p>
+      <div class="quick-links__grid">
+        <a href="/guiselmode/HTML/Productos.html#poleras-bordado" class="quick-link">Poleras</a>
+        <a href="/guiselmode/HTML/Productos.html#polos-bordado"   class="quick-link">Polos</a>
+        <a href="/guiselmode/HTML/Productos.html#pijamas"         class="quick-link">Pijamas</a>
+        <a href="/guiselmode/HTML/Productos.html#conjuntos-bordado" class="quick-link">Conjuntos</a>
+        <a href="https://wa.me/949626583" target="_blank" class="quick-link">
+          <i class="fa-brands fa-whatsapp"></i> WhatsApp
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

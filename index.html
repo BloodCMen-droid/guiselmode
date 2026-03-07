@@ -1,250 +1,366 @@
 <!DOCTYPE html>
 <html lang="es" data-bs-theme="auto">
-<head>
-    <meta charset="UTF-8">
-    <!-- 🔎 SEO BÁSICO -->
-  <title>Poleras y Polos Personalizados en Trujillo, Perú | G'isyl Mood</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#e01c1c">
 
-<meta name="description"
-content="Confeccionamos poleras y polos personalizados en Trujillo, Perú. Diseños únicos para pareja, marcas y eventos. Cotiza fácil por WhatsApp.">
+<title>G&M — G'ysil Mood | Prendas Personalizadas en Trujillo</title>
+<meta name="description" content="Prendas personalizadas con bordado y estampado de alta calidad. Poleras, polos, pijamas y conjuntos hechos a pedido en Trujillo, Perú. ¡Pide el tuyo!">
+<meta name="keywords" content="prendas personalizadas, bordado, estampado, poleras, polos, pijamas, Trujillo, Perú, G&M, Gysil Mood">
+<meta name="author" content="G'ysil Mood">
+<meta name="robots" content="index, follow">
 
-<!-- Opcional (no afecta SEO Google) -->
-<meta name="keywords"
-content="poleras personalizadas, polos personalizados, prendas de vestir personalizadas, Trujillo Perú">
+<!-- Open Graph (Facebook, WhatsApp, Instagram) -->
+<meta property="og:type"        content="website">
+<meta property="og:site_name"   content="G&M — G'ysil Mood">
+<meta property="og:title"       content="G&M — Prendas Personalizadas en Trujillo">
+<meta property="og:description" content="Bordado y estampado de alta calidad. Poleras, polos, pijamas y conjuntos personalizados hechos a pedido.">
+<meta property="og:image"       content="https://res.cloudinary.com/imgapi/image/upload/w_1200,h_630,c_pad,b_black/b77b7870-f450-4319-9475-e1554e0a9579_zyfezr">
+<meta property="og:image:width"  content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale"      content="es_PE">
+
+<!-- Twitter / X -->
+<meta name="twitter:card"        content="summary_large_image">
+<meta name="twitter:title"       content="G&M — Prendas Personalizadas en Trujillo">
+<meta name="twitter:description" content="Bordado y estampado de alta calidad. Poleras, polos, pijamas y conjuntos personalizados hechos a pedido.">
+<meta name="twitter:image"       content="https://res.cloudinary.com/imgapi/image/upload/w_1200,h_630,c_pad,b_black/b77b7870-f450-4319-9475-e1554e0a9579_zyfezr">
+
+<!-- Favicon -->
+<link rel="icon"             type="image/png" href="https://res.cloudinary.com/imgapi/image/upload/w_32,h_32,c_fill/b77b7870-f450-4319-9475-e1554e0a9579_zyfezr">
+<link rel="apple-touch-icon" href="https://res.cloudinary.com/imgapi/image/upload/w_180,h_180,c_fill/b77b7870-f450-4319-9475-e1554e0a9579_zyfezr">
 
   
-  
-        <meta name="robots" content="index, follow">
-
-  <link rel="canonical" href="https://bloodcmen-droid.github.io//">
-    <meta name="google-site-verification" content="Yyek2lhjGExXrVimKQVl14fkS15_RGx5djC_AI52XOA" />
-   
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-    <!-- Logo -->
-<link rel="icon" href="/favicon.ico">
-
-
-
-  
-
-
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- CSS propio -->
     
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+   
+    <link rel="stylesheet" href="/guiselmode/CSS/Base/resets.css">
+    <link rel="stylesheet" href="/guiselmode/CSS/Base/variables.css">
+    <link rel="stylesheet" href="/guiselmode/CSS/Base/global.css">
     
-    <link rel="stylesheet" href="CSS/Base/resets.css">
-    <link rel="stylesheet" href="CSS/Base/variables.css">
-    <link rel="stylesheet" href="CSS/Base/global.css">
 
-    <link rel="stylesheet" href="CSS/Componets/navbar.css">
-    <link rel="stylesheet" href="CSS/Componets/footer.css">
-
+    <link rel="stylesheet" href="/guiselmode/CSS/Componets/navbar.css">
+    <link rel="stylesheet" href="/guiselmode/CSS/Componets/footer.css">
+    <link rel="stylesheet" href="/guiselmode/CSS/Componets/carousel.css">
+    <link rel="stylesheet" href="/guiselmode/CSS/Componets/modal-login.css">
 
 
-    <link rel="stylesheet" href="CSS/Pages/Index.css"> 
-    <link rel="stylesheet" href="CSS/Pages/Card_index.css">
+    
+    <link rel="stylesheet" href="/guiselmode/CSS/Pages/Card_index.css">
 
-</head>
-
-<body>
  
-<!-- ================= NAVBAR ================= -->
-<nav class="navbar navbar-expand-lg navbar-light navbar-hm fixed-top">
-    <div class="container">
-        <a class="navbar-brand fw-bold" href="index.html">
-            G'isyl Mood
-        </a>
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
-            <span class="navbar-toggler-icon"></span>
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar__inner">
+
+      <a href="/guiselmode/index.html" class="navbar__logo">G<span>&</span>M</a>
+
+      <button class="navbar__hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <ul class="navbar__nav" id="navMenu">
+        <li><a href="/guiselmode/HTML/Productos.html#poleras">Poleras</a></li>
+        <li><a href="/guiselmode/HTML/Productos.html#polos">Polos</a></li>
+        <li><a href="/guiselmode/HTML/Productos.html#pijamas">Pijamas</a></li>
+        <li><a href="/guiselmode/HTML/Productos.html#conjuntos">Conjuntos</a></li>
+        <li><a href="/guiselmode/HTML/Productos.html#familia">Familia</a></li>
+         <li><strong><a href="/guiselmode/HTML/Productos.html">|| Porductos || </a></strong></li>
+      </ul>
+
+      <div class="navbar__actions">
+        <button class="navbar__action-btn" title="Buscar">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <span>Buscar</span>
         </button>
-
-        <div class="collapse navbar-collapse" id="menu">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
-                <li class="nav-item">
-                    <a class="nav-link" href="HTML/Productos.html">Productos</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="HTML/Nosotros.html">Nosotros</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#contacto">Contacto</a>
-                </li>
-                <li class="nav-item">
-                    <button class="btn btn-hm btn-sm ms-lg-3" id="btnAcceder">
-                        Acceder
-                    </button>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
-
-
-<!-- ================= CARRUSEL ================= -->
-<div id="carouselGysel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000" data-bs-pause="false">
-  <div class="carousel-inner">
-
-    <div class="carousel-item active">
-      <img src="IMG/Carousel/Carousel_01.webp" class="d-block w-100 carousel-img"
-          alt="Poleras personalizadas en Trujillo Perú - G'isyl Mood" fetchpriority="high" >
-      <div class="carousel-caption animate-slide">
-        <h2 class="fw-bold">Moda que inspira</h2>
-        <p>Descubre tu estilo con G'isyl Mood</p>
+        <button class="navbar__action-btn" title="Mi cuenta" id="btnAccount">
+          <i class="fa-regular fa-user" ></i>
+          <span>Account</span>
+        </button>
+        <button class="navbar__action-btn accent" title="Favoritos">
+          <i class="fa-regular fa-heart"></i>
+          <span>Fav</span>
+        </button>
       </div>
-    </div>
 
-    <div class="carousel-item">
-      <img src="IMG/Carousel/Carousel_02.webp" class="d-block w-100 carousel-img"
-           alt="Polos personalizados para pareja en Trujillo, Perú"
-           loading="lazy">
-      <div class="carousel-caption animate-slide">
-        <h2 class="fw-bold">Elegancia y comodidad</h2>
-      </div>
     </div>
+  </nav>
 
-    <div class="carousel-item">
-      <img src="IMG/Carousel/Carousel_03.webp" class="d-block w-100 carousel-img"
-           alt="Nueva colección poleras personalizadas - G'isyl Mood" loading="lazy">
-      <div class="carousel-caption animate-slide">
-        <h2 class="fw-bold">Nueva colección</h2>
-      </div>
-    </div>
-
+  <!-- BUSCADOR -->
+<div class="search-bar" id="searchBar">
+  <div class="search-bar__inner">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <input type="text" id="searchInput" placeholder="Buscar producto… ej: polera, pijama, bordado" autocomplete="off" />
+    <button class="search-bar__close" id="searchClose">✕</button>
   </div>
-
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselGysel" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon"></span>
-  </button>
-
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselGysel" data-bs-slide="next">
-    <span class="carousel-control-next-icon"></span>
-  </button>
+  <div class="search-bar__results" id="searchResults"></div>
 </div>
 
+  <!-- ===== CAROUSEL ===== -->
+  <section class="carousel" id="carousel">
+    <div class="carousel__track" id="carouselTrack">
 
-<!-- ================= PRODUCTOS ================= -->
-<section id="productos" class="container my-5">
-
-    <h1 class="pb-5 text-center"><spam>Prendas de vestir personalizadas en Trujillo-Perú</spam></h1>
-
-   <h2 class="text-center mb-4 productos-title-2">
-    <span>Nuestros Productos</span>
-</h2>
-
-    <div class="row" id="listaProductos">
-        <!-- JS cargará los productos -->
-    </div>
-</section>
-
-<!-- ================= NOSOTROS ================= -->
-<section id="nosotros" class="py-5">
-  <div class="container">
-    <div class="row align-items-stretch">
-      
-      <!-- Columna de texto -->
-      <div class="col-md-6 mb-4 mb-md-0">
-        <div class="p-4 bg-light shadow rounded h-100">
-          <h2 class="text-danger mb-3">Sobre Nosotros</h2>
-          <p class="lead" style="line-height: 1.6;">
-            En <strong>G'isyl Mood</strong> creemos que la moda no solo es ropa, sino una forma de expresar tu personalidad. 
-            Nuestra misión es ofrecer prendas modernas, elegantes y accesibles, pensadas para realzar tu estilo en cada 
-            ocasión, desde momentos casuales hasta eventos especiales.
-          </p>
-          <p class="lead" style="line-height: 1.6;">
-            Cada colección está diseñada con pasión, cuidando cada detalle para que te sientas único(a) y seguro(a) 
-            mientras luces tus outfits favoritos.
-          </p>
-          <a href="HTML/Productos.html" class="btn btn-danger mt-3">Ver Productos</a>
+      <!-- Slide 1 -->
+      <div class="carousel__slide active">
+        <div class="carousel__slide-bg" style="background-image: url('https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?w=1600&q=80');"></div>
+        <div class="carousel__content">
+          <p class="carousel__tag">Nueva Colección — 2025</p>
+          <h1 class="carousel__title">Hecha<br><em>para ti</em></h1>
+          <p class="carousel__subtitle">Prendas personalizadas con bordado y estampado de alta calidad. Tu estilo, tu identidad.</p>
+          <div class="carousel__actions">
+            <a href="/guiselmode/HTML/productos.html" class="btn-primary">Ver Colección</a>
+            <a href="/guiselmode/HTML/nosotros.html" class="btn-outline">Nosotros</a>
+          </div>
         </div>
       </div>
 
-      <!-- Columna de imagen -->
-      <div class="col-md-6">
-        <div class="h-100">
-          <img src="IMG/Card/Card_01.png" alt="Sobre Nosotros" class="img-fluid nosotros-img">
+      <!-- Slide 2 -->
+      <div class="carousel__slide">
+        <div class="carousel__slide-bg" style="background-image: url('https://images.unsplash.com/photo-1554568218-0f1715e72254?w=1600&q=80');"></div>
+        <div class="carousel__content">
+          <p class="carousel__tag">Especial — Parejas & Familia</p>
+          <h1 class="carousel__title">Amor<br><em>bordado</em></h1>
+          <p class="carousel__subtitle">Conjuntos personalizados para parejas y familias. Momentos únicos merece prendas únicas.</p>
+          <div class="carousel__actions">
+            <a href="/guiselmode/HTML/productos.html" class="btn-primary">Explorar</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="carousel__slide">
+        <div class="carousel__slide-bg" style="background-image: url('https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=1600&q=80');"></div>
+        <div class="carousel__content">
+          <p class="carousel__tag">Personaje — Edición Limitada</p>
+          <h1 class="carousel__title">Tu<br><em>universo</em></h1>
+          <p class="carousel__subtitle">Estampados de personajes favoritos con calidad premium. Del anime a la cultura pop.</p>
+          <div class="carousel__actions">
+            <a href="/guiselmode/HTML/nosotros.html" class="btn-primary">Descubrir</a>
+          </div>
         </div>
       </div>
 
     </div>
-  </div>
-</section>
 
-
-
-
-
-
-<!-- ================= FOOTER ================= -->
-<footer class="site-footer editorial-pro">
-  <div class="container">
-
-    <div class="footer-grid">
-
-      <!-- Marca -->
-      <div class="footer-brand">
-        <p class="brand-name">G’ISYL MOOD</p>
-        <p class="brand-desc">
-          Prendas personalizadas con identidad propia.
-        </p>
+    <!-- Controls -->
+    <div class="carousel__controls">
+      <div class="carousel__dots" id="carouselDots"></div>
+      <div class="carousel__arrows">
+        <button class="carousel__arrow" id="prevBtn" aria-label="Anterior">
+          <i class="fa-solid fa-arrow-left"></i>
+        </button>
+        <button class="carousel__arrow" id="nextBtn" aria-label="Siguiente">
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
       </div>
-
-      <!-- Redes -->
-      <div class="footer-social">
-        <a href="https://www.instagram.com/gm_gisylmood" target="_blank">
-          Instagram
-        </a>
-        <a href="https://www.facebook.com/share/1HS85CzLwk/" target="_blank">
-          Facebook
-        </a>
-        <a href="https://www.tiktok.com/@gisylmood" target="_blank">
-          TikTok
-        </a>
-        <a href="https://wa.me/51949626583" target="_blank">
-          WhatsApp
-        </a>
-      </div>
-
     </div>
 
-    <div class="footer-bottom">
-      © 2025 G’ISYL MOOD
+    <div class="carousel__counter">
+      <span id="currentSlide">01</span> / <span id="totalSlides">03</span>
     </div>
+  </section>
 
-  </div>
-</footer>
+  <!-- ===== PRODUCTOS DESTACADOS ===== -->
+  <section class="products-section">
+    <div class="container">
+      <div class="products-section__header">
+        <div>
+          <h2 class="section-title">Nuestros <span>Productos</span></h2>
+          <p>Prendas de vestir personalizadas en Trujillo, Perú. Bordado y estampado de alta calidad.</p>
+        </div>
+        <a href="/guiselmode/HTML/nosotros.html" class="btn-outline">Ver todos</a>
+      </div>
 
+      <div class="products-grid" id="productsGrid">
 
-
-<!-- ================= MODAL LOGIN ================= -->
-<div class="modal fade" id="loginModal" tabindex="-1">
-    <div class="modal-dialog">
-        <div class="modal-content">
-
-            <div class="modal-header bg-danger text-white">
-                <h5 class="modal-title">Acceso al sistema</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        <!-- Card 1 -->
+        <div class="product-card">
+          <div class="product-card__img-wrap">
+            <span class="product-card__badge">Nuevo</span>
+            <img src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=600&q=80" alt="Polera Personalizada" loading="lazy" />
+            <div class="product-card__overlay">
+              <a href="#" class="product-card__quick-view">Ver más</a>
             </div>
-
-            <div class="modal-body">
-                <input type="text" id="txtUsuario" class="form-control mb-3" placeholder="Usuario">
-                <input type="password" id="txtPassword" class="form-control mb-3" placeholder="Contraseña">
-                <button id="btnLogin" class="btn btn-danger w-100">Ingresar</button>
+          </div>
+          <div class="product-card__body">
+            <p class="product-card__category">Poleras Bordado</p>
+            <h3 class="product-card__name">Poleras Personalizadas</h3>
+            <div class="product-card__footer">
+              <p class="product-card__price">S/ 165 <small>2 pzas aprox</small></p>
+              <button class="product-card__wishlist" title="Favorito">
+                <i class="fa-regular fa-heart"></i>
+              </button>
             </div>
-
+          </div>
         </div>
+
+        <!-- Card 2 -->
+        <div class="product-card">
+          <div class="product-card__img-wrap">
+            <img src="https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=600&q=80" alt="Polos Personalizados" loading="lazy" />
+            <div class="product-card__overlay">
+              <a href="#" class="product-card__quick-view">Ver más</a>
+            </div>
+          </div>
+          <div class="product-card__body">
+            <p class="product-card__category">Polos Estampado</p>
+            <h3 class="product-card__name">Polos Personalizados</h3>
+            <div class="product-card__footer">
+              <p class="product-card__price">S/ 30 <small>1 pza aprox</small></p>
+              <button class="product-card__wishlist" title="Favorito">
+                <i class="fa-regular fa-heart"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="product-card">
+          <div class="product-card__img-wrap">
+            <span class="product-card__badge">Popular</span>
+            <img src="https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=600&q=80" alt="Poleras Familia" loading="lazy" />
+            <div class="product-card__overlay">
+              <a href="#" class="product-card__quick-view">Ver más</a>
+            </div>
+          </div>
+          <div class="product-card__body">
+            <p class="product-card__category">Familia Bordado</p>
+            <h3 class="product-card__name">Poleras Familia</h3>
+            <div class="product-card__footer">
+              <p class="product-card__price">S/ 215 <small>3 pzas aprox</small></p>
+              <button class="product-card__wishlist" title="Favorito">
+                <i class="fa-regular fa-heart"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="product-card">
+          <div class="product-card__img-wrap">
+            <img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=600&q=80" alt="Pijamas" loading="lazy" />
+            <div class="product-card__overlay">
+              <a href="#" class="product-card__quick-view">Ver más</a>
+            </div>
+          </div>
+          <div class="product-card__body">
+            <p class="product-card__category">Pijamas</p>
+            <h3 class="product-card__name">Pijamas Personalizadas</h3>
+            <div class="product-card__footer">
+              <p class="product-card__price">S/ 90 <small>1 pza aprox</small></p>
+              <button class="product-card__wishlist" title="Favorito">
+                <i class="fa-regular fa-heart"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
-</div>
+  </section>
 
+  <!-- ===== NOSOTROS ===== -->
+  <section class="nosotros-section" id="nosotros">
+    <div class="container">
+      <div class="nosotros__grid">
 
-<!-- ================= SCRIPTS ================= -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="JS/app.js"></script>
-<script src="JS/login.js"></script>
+        <div class="nosotros__text-col">
+          <p class="nosotros__tag">Sobre Nosotros</p>
+          <h2 class="nosotros__title">Moda con<br><em>identidad</em><br>propia</h2>
+          <p class="nosotros__text">En G&M creemos que la moda no solo es ropa, sino una forma de expresar tu personalidad. Nuestra misión es ofrecer prendas modernas, elegantes y accesibles, pensadas para realzar tu estilo en cada ocasión.</p>
+          <p class="nosotros__text">Cada colección está diseñada con pasión, cuidando cada detalle para que te sientas único(a) y seguro(a) mientras luces tus outfits favoritos.</p>
+          <div class="nosotros__actions">
+            <a href="/guiselmode/HTML/productos.html" class="btn-primary">Ver Productos</a>
+            <a href="/guiselmode/HTML/nosotros.html" class="btn-outline">Leer más</a>
+          </div>
+        </div>
+
+        <div class="nosotros__img-wrap">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" alt="Sobre Nosotros G&M" loading="lazy" />
+          <div class="nosotros__img-accent"></div>
+          <div class="nosotros__stats">
+            <div>
+              <p class="nosotros__stat-num">500+</p>
+              <p class="nosotros__stat-label">Clientes</p>
+            </div>
+            <div>
+              <p class="nosotros__stat-num">3+</p>
+              <p class="nosotros__stat-label">Años</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+
+        <div>
+          <p class="footer__brand-logo">G<span>&</span>M</p>
+          <p class="footer__brand-desc">Prendas personalizadas con identidad propia. Bordado y estampado de alta calidad en Trujillo, Perú.</p>
+          <div class="footer__socials">
+            <a href="https://www.instagram.com/gm_gisylmood" class="footer__social" title="Instagram" target="_blank"><i class="fa-brands fa-instagram" ></i></a>
+            <a href="https://www.facebook.com/profile.php?id=100063723241449&sk=about" class="footer__social" title="Facebook" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="https://www.tiktok.com/@gisylmood" class="footer__social" title="TikTok" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="https://wa.me/949626583" class="footer__social" title="WhatsApp" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+          </div>
+        </div>
+
+        <div>
+          <p class="footer__col-title">Productos</p>
+          <ul class="footer__links">
+            <li><a href="/guiselmode/HTML/Productos.html#poleras">Poleras</a></li>
+            <li><a href="/guiselmode/HTML/Productos.html#polos">Polos</a></li>
+            <li><a href="/guiselmode/HTML/Productos.html#pijamas">Pijamas</a></li>
+            <li><a href="/guiselmode/HTML/Productos.html#conjuntos">Conjuntos</a></li>
+            <li><a href="/guiselmode/HTML/Productos.html#familia">Familia</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <p class="footer__col-title">Empresa</p>
+          <ul class="footer__links">
+            <li><a href="/guiselmode/HTML/nosotros.html">Nosotros</a></li>
+            <li><a href="/guiselmode/index.html">Contacto</a></li>
+            <li><a href="/guiselmode/index.html">Blog</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <p class="footer__col-title">Contacto</p>
+          <ul class="footer__links">
+            <li><a href="#">Trujillo, Perú</a></li>
+            <li><a href="https://wa.me/949626583" target="_blank">WhatsApp</a></li>
+            <li><a href="https://www.instagram.com/gm_gisylmood">Instagram</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer__bottom">
+        <p class="footer__copy">© 2025 <span>G&M</span> — Todos los derechos reservados.</p>
+        <p class="footer__copy">Hecho con <span>♥</span> en Trujillo, Perú</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JS -->
+     <script src="/guiselmode/JS/carousel-logic.js"></script>
+     <script src="/guiselmode/JS/productos.js"></script>
+     <script src="/guiselmode/JS/navbar.js"></script>
+     <script src="/guiselmode/JS/modal.js"></script>
+
 </body>
 </html>

@@ -1,241 +1,234 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-   <title>Sobre Nosotros | G'isyl Mood – Prendas Personalizadas en Trujillo</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nosotros — G&M G'ysil Mood</title>
+  <meta name="description" content="Conoce la historia de G&M G'ysil Mood, marca peruana de prendas personalizadas en Trujillo.">
+  <meta name="robots" content="index, follow">
 
-<meta name="description" content="G'isyl Mood es un emprendimiento de prendas personalizadas en Trujillo. Diseñamos poleras y polos únicos con bordado y estampado de alta calidad.">
-
-<meta name="keywords" content="G'isyl Mood, sobre nosotros, prendas personalizadas Trujillo, ropa personalizada, poleras personalizadas, bordado y estampado">
-
-
-      <link rel="icon" href="/favicon.ico">
-
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-
-<meta name="robots" content="index, follow">
-
-<link rel="canonical" href="https://bloodcmen-droid.github.io/HTML/Nosotros.html">
-
-
-
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- FontAwesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <!-- CSS propio -->
-
-
-
-     <link rel="stylesheet" href="/CSS/Pages/nosotros-gm.css">
-     <link rel="stylesheet" href="/CSS/Base/global.css">
-     <link rel="stylesheet" href="/CSS/Componets/navbar.css">
-
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="/guiselmode/CSS/Base/resets.css">
+  <link rel="stylesheet" href="/guiselmode/CSS/Base/variables.css">
+  <link rel="stylesheet" href="/guiselmode/CSS/Base/global.css">
+  <link rel="stylesheet" href="/guiselmode/CSS/Componets/navbar.css">
+  <link rel="stylesheet" href="/guiselmode/CSS/Componets/footer.css">
+  <link rel="stylesheet" href="/guiselmode/CSS/Componets/modal-login.css">
+  
+  <link rel="stylesheet" href="/guiselmode/CSS/Pages/nosotros.css">
+   <link rel="stylesheet" href="/guiselmode/CSS/Pages/mantenimiento.css">
 </head>
-
 <body>
 
-<!-- ================= NAVBAR ================= -->
-<nav class="navbar navbar-expand-lg fixed-top navbar-hm navbar-nosotros">
-  <div class="container">
-    <a class="navbar-brand fw-bold" href="../index.html">
-      G'isyl Mood
-    </a>
-
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="menuPrincipal">
-      <ul class="navbar-nav ms-auto gap-lg-2">
-        <li class="nav-item">
-          <a class="nav-link" href="../HTML/Productos.html">Productos</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="../HTML/Nosotros.html">Nosotros</a>
-        </li>
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar__inner">
+      <a href="/guiselmode/index.html" class="navbar__logo">G<span>&</span>M</a>
+      <button class="navbar__hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="navbar__nav" id="navMenu">
+        <li><a href="/guiselmode/HTML/productos.html#poleras-bordado">Poleras</a></li>
+        <li><a href="/guiselmode/HTML/productos.html#polos-bordado">Polos</a></li>
+        <li><a href="/guiselmode/HTML/productos.html#pijamas">Pijamas</a></li>
+        <li><a href="/guiselmode/HTML/productos.html#conjuntos-bordado">Conjuntos</a></li>
+        <li><a href="/guiselmode/HTML/productos.html#familia-bordado">Familia</a></li>
+        <li><strong><a href="/guiselmode/HTML/productos.html">|| Productos || </a></strong></li>
       </ul>
+      <div class="navbar__actions">
+        <button class="navbar__action-btn" title="Buscar">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <span>Buscar</span>
+        </button>
+        <button class="navbar__action-btn" title="Mi cuenta" id="btnAccount">
+          <i class="fa-regular fa-user"></i>
+          <span>Account</span>
+        </button>
+        <button class="navbar__action-btn accent" title="Favoritos">
+          <i class="fa-regular fa-heart"></i>
+          <span>Fav</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+  <!-- HERO -->
+  <section class="nos-hero">
+    <div class="nos-hero__bg"></div>
+    <div class="nos-hero__grid"></div>
+    <div class="nos-hero__content">
+      <span class="nos-hero__tag">Marca Peruana · Trujillo</span>
+      <h1 class="nos-hero__title">QUIÉNES <em>SOMOS</em></h1>
+      <p class="nos-hero__sub">
+        Detrás de cada prenda hay una historia, una persona y un detalle hecho con cuidado.
+        Somos G&M, y hacemos moda que te representa.
+      </p>
+    </div>
+  </section>
+
+  <!-- HISTORIA -->
+  <section class="nos-section">
+    <div class="nos-historia">
+      <div class="nos-historia__img">
+        <img
+          src="https://res.cloudinary.com/imgapi/image/upload/w_600,h_600,c_fill,g_auto,f_webp,q_auto/b77b7870-f450-4319-9475-e1554e0a9579_zyfezr"
+          alt="Logo G&M G'ysil Mood" />
+      </div>
+      <div class="nos-historia__text">
+        <p class="nos-label">Nuestra Historia</p>
+        <h2 class="nos-title">NACIÓ DE UNA <em>IDEA</em></h2>
+        <div class="nos-divider"></div>
+        <p>G'ysil Mood nació con una idea simple: que cada persona pueda llevar puesto algo que realmente la identifique. No prendas genéricas, sino piezas pensadas, bordadas o estampadas con atención al detalle.</p>
+        <p>Somos una marca peruana con base en Trujillo, especializada en prendas personalizadas para mujeres, familias y grupos. Trabajamos con pedidos a medida porque creemos que la moda debe adaptarse a ti, no al revés.</p>
+        <p>Cada pedido pasa por un proceso cuidadoso — desde la elección del diseño hasta la entrega — porque queremos que cuando abras el paquete, sonrías.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="nos-separator">
+
+  <!-- MISIÓN VISIÓN VALORES -->
+  <section class="nos-section--full">
+    <div class="nos-section__inner">
+      <p class="nos-label" style="text-align:center">Lo que nos mueve</p>
+      <h2 class="nos-title" style="text-align:center">MISIÓN, VISIÓN <em>&</em> VALORES</h2>
+      <div class="nos-divider" style="margin:0 auto 40px"></div>
+      <div class="nos-mvv">
+        <div class="nos-mvv__card">
+          <span class="nos-mvv__icon">🎯</span>
+          <h3>MISIÓN</h3>
+          <p>Crear prendas personalizadas de calidad que transmitan identidad, estilo y confianza a cada persona que las lleva.</p>
+        </div>
+        <div class="nos-mvv__card">
+          <span class="nos-mvv__icon">🔭</span>
+          <h3>VISIÓN</h3>
+          <p>Ser la marca de referencia en personalización de prendas en el norte del Perú, reconocida por su calidad y atención al detalle.</p>
+        </div>
+        <div class="nos-mvv__card">
+          <span class="nos-mvv__icon">💎</span>
+          <h3>VALORES</h3>
+          <p>Nos guiamos por principios que definen cada prenda que hacemos.</p>
+          <div class="nos-mvv__valores">
+            <span class="nos-mvv__valor-tag">Calidad</span>
+            <span class="nos-mvv__valor-tag">Compromiso</span>
+            <span class="nos-mvv__valor-tag">Creatividad</span>
+            <span class="nos-mvv__valor-tag">Confianza</span>
+            <span class="nos-mvv__valor-tag">Puntualidad</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="nos-separator">
+
+  <!-- ENVÍOS Y DEVOLUCIONES -->
+  <section class="nos-section">
+    <p class="nos-label">Antes de pedir</p>
+    <h2 class="nos-title">INFORMACIÓN <em>IMPORTANTE</em></h2>
+    <div class="nos-divider"></div>
+    <div class="nos-envios">
+      <div class="nos-envios__card">
+        <h3><i class="fa-solid fa-truck-fast"></i> Envíos</h3>
+        <p>Todas las compras se realizan con un <strong>50% de anticipo</strong> y el 50% restante se cancela cuando el pedido personalizado está listo.</p>
+        <p>El tiempo de preparación es de <strong>3 a 4 días</strong> antes de realizar la entrega o envío.</p>
+        <span class="nos-envios__badge nos-envios__badge--ok">
+          <i class="fa-solid fa-check"></i> Envíos nacionales: 2–4 días
+        </span>
+        <span class="nos-envios__badge nos-envios__badge--no">
+          <i class="fa-solid fa-xmark"></i> Internacionales: no realizamos
+        </span>
+      </div>
+      <div class="nos-envios__card">
+        <h3><i class="fa-solid fa-rotate-left"></i> Cambios y Devoluciones</h3>
+        <p>No realizamos cambios ni devoluciones en prendas personalizadas.</p>
+        <p>Todas nuestras prendas pasan por un riguroso <strong>control de calidad</strong> antes de ser entregadas o enviadas, garantizando un producto en perfectas condiciones.</p>
+        <p style="margin-top:16px; color:var(--text-muted); font-size:.82rem;">Gracias por confiar en nuestro trabajo 🩷</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="nos-separator">
+
+  <!-- REDES SOCIALES -->
+  <section class="nos-redes">
+    <p class="nos-label">Síguenos</p>
+    <h2 class="nos-title">CONÉCTATE <em>CON NOSOTROS</em></h2>
+    <div class="nos-divider" style="margin:0 auto 16px"></div>
+    <p style="color:var(--text-secondary); font-size:.9rem;">Conoce nuestras últimas colecciones y novedades.</p>
+    <div class="nos-redes__grid">
+      <a href="https://www.facebook.com/profile.php?id=100063723241449" target="_blank" class="nos-red-btn"><i class="fa-brands fa-tiktok"></i> TikTok</a>
+      <a href="https://www.instagram.com/gm_gisylmood" target="_blank" class="nos-red-btn"><i class="fa-brands fa-instagram"></i> Instagram</a>
+      <a href="https://wa.me/949626583" target="_blank" class="nos-red-btn"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+      <a href="https://www.facebook.com/profile.php?id=100063723241449" target="_blank" class="nos-red-btn"><i class="fa-brands fa-facebook"></i> Facebook</a>
+    </div>
+  </section>
+
+  <hr class="nos-separator">
+
+  <!-- COMENTARIOS -->
+  <section class="nos-comments">
+    <p class="nos-label">Lo que dicen de nosotros</p>
+    <h2 class="nos-title">RESEÑAS <em>& OPINIONES</em></h2>
+    <div class="nos-divider"></div>
+
+    <div class="nos-comment-form" id="nosCommentForm">
+      <h3>DEJA TU <em>RESEÑA</em></h3>
+      <p>¿Ya pediste con nosotros? Cuéntanos tu experiencia.</p>
+
+      <div class="nos-login-notice" id="nosLoginNotice" style="display:none">
+        <i class="fa-solid fa-lock"></i>
+        <span>Debes <a href="#" id="nosLoginLink">iniciar sesión</a> para dejar una reseña.</span>
+      </div>
+
+      <div id="nosFormReal">
+        <div class="nos-stars" id="nosStars">
+          <button class="nos-star" data-val="1">★</button>
+          <button class="nos-star" data-val="2">★</button>
+          <button class="nos-star" data-val="3">★</button>
+          <button class="nos-star" data-val="4">★</button>
+          <button class="nos-star" data-val="5">★</button>
+        </div>
+        <textarea id="nosCommentText" placeholder="Escribe tu experiencia aquí…" maxlength="500"></textarea>
+        <button class="btn-comment-submit" id="nosCommentSubmit">
+          <i class="fa-solid fa-paper-plane"></i> Publicar reseña
+        </button>
+      </div>
+    </div>
+
+    <div class="nos-comments__list" id="nosCommentsList">
+      <div class="nos-comments__empty">
+        <i class="fa-regular fa-comment-dots"></i>
+        Cargando reseñas…
+      </div>
+    </div>
+  </section>
+  <!-- FOOTER -->
+  <footer class="footer" id="footer"></footer>
+
+
+  <div class="mant-modal-overlay" id="nosConfirmOverlay">
+  <div class="mant-modal" style="max-width:420px">
+    <div class="mant-modal__header">
+      <h2 class="mant-modal__title">ELIMINAR <em>RESEÑA</em></h2>
+      <button class="mant-modal__close" id="nosConfirmClose">✕</button>
+    </div>
+    <div class="mant-confirm__msg">
+      <strong>¿Segura que quieres eliminar esta reseña?</strong>
+      <p class="mant-confirm__warn">⚠️ Esta acción no se puede deshacer.</p>
+    </div>
+    <div class="mant-modal__footer">
+      <button class="btn-outline-mant" id="nosConfirmCancel">Cancelar</button>
+      <button class="btn-primary" id="nosConfirmDelete" style="background:var(--accent-red)">
+        <i class="fa-solid fa-trash"></i> Sí, eliminar
+      </button>
     </div>
   </div>
-</nav>
+</div>
 
-<h1 class="visually-hidden">
-  Políticas de Envío y Condiciones de Compra | G'isyl Mood
-</h1>
+  <script src="/guiselmode/JS/navbar.js"></script>
+  <script src="/guiselmode/JS/modal.js"></script>
+  <script src="/guiselmode/JS/nosotros.js"></script>
 
-
-<!-- ================= CONTENIDO ================= -->
-<section class="container mt-5 pt-5">
-
-    <!-- Título -->
-    <div class="text-center mb-5">
-        <h1 class="text-danger fw-bold">Quiénes Somos</h1>
-        <p class="text-muted mt-3">
-            G'isyl Mood es una marca peruana dedicada a la moda femenina,
-            enfocada en realzar la elegancia, comodidad y estilo de cada mujer.
-        </p>
-    </div>
-
-    <!-- Imagen + texto -->
-    <div class="row align-items-center mb-5">
-        <div class="col-md-6 mb-4">
-            <img src="../IMG/Card/Nosotros.jpg" class="img-fluid rounded shadow" alt="Gysel's Mode">
-        </div>
-        <div class="col-md-6">
-            <h3 class="text-danger">Nuestra Historia</h3>
-            <p>
-                Nacimos con la idea de ofrecer prendas que combinen tendencia
-                y calidad, adaptadas al ritmo de la mujer actual.
-                Cada colección es pensada cuidadosamente para brindar
-                confianza y estilo.
-            </p>
-            <p>
-                Trabajamos con proveedores confiables y cuidamos cada detalle
-                para que nuestras clientas vivan una experiencia única.
-            </p>
-        </div>
-    </div>
-
-    <!-- Misión / Visión / Valores -->
-    <div class="row text-center mb-5">
-        <div class="col-md-4 mb-4">
-            <div class="card h-100 shadow-sm border-0">
-                <div class="card-body">
-                    <i class="fas fa-bullseye fs-2 text-danger mb-3"></i>
-                    <h5 class="card-title">Misión</h5>
-                    <p class="card-text">
-                        Brindar moda femenina de calidad que inspire
-                        seguridad y autenticidad.
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-4 mb-4">
-            <div class="card h-100 shadow-sm border-0">
-                <div class="card-body">
-                    <i class="fas fa-eye fs-2 text-danger mb-3"></i>
-                    <h5 class="card-title">Visión</h5>
-                    <p class="card-text">
-                        Convertirnos en una marca referente en moda femenina
-                        a nivel nacional.
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-4 mb-4">
-            <div class="card h-100 shadow-sm border-0">
-                <div class="card-body">
-                    <i class="fas fa-heart fs-2 text-danger mb-3"></i>
-                    <h5 class="card-title">Valores</h5>
-                    <p class="card-text">
-                        Calidad · Compromiso · Estilo · Confianza
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    
-    <!-- ================= POLÍTICAS ================= -->
-<section class="politicas bg-light rounded-4 p-5 mb-5 shadow-sm">
-
-    <div class="text-center mb-4">
-        <h2 class="fw-bold">Información Importante</h2>
-        <p class="text-muted">
-            Conoce nuestras políticas de envío y condiciones de compra
-        </p>
-    </div>
-
-    <div class="row">
-        <!-- Envíos -->
-        <div class="col-md-6 mb-4">
-            <h3 class="fw-bold mb-3">🚚 Envíos</h3>
-
-            <p>
-                Todas las compras se realizan con un <strong>50% de anticipo</strong>
-                y el <strong>50% restante</strong> se cancela cuando el pedido
-                personalizado está listo.
-            </p>
-
-            <p>
-                El tiempo de preparación es de <strong>3 a 4 días</strong>
-                antes de realizar la entrega o envío.
-            </p>
-
-            <div class="badges-wrap mt-3">
-                <span class="badge rounded-pill bg-dark px-4 py-2">
-                    Envíos nacionales: 2 – 4 días
-                </span>
-                <span class="badge rounded-pill bg-secondary px-4 py-2">
-                    Envíos internacionales: No realizamos
-                </span>
-            </div>
-        </div>
-
-        <!-- Cambios / Devoluciones -->
-        <div class="col-md-6 mb-4">
-            <h3 class="fw-bold mb-3">🔁 Cambios o Devoluciones</h3>
-
-            <p>
-                No realizamos cambios ni devoluciones.
-            </p>
-
-            <p>
-                Todas nuestras prendas pasan por un riguroso
-                <strong>control de calidad</strong> antes de ser entregadas
-                o enviadas, garantizando un producto en perfectas condiciones.
-            </p>
-
-            <p class="mt-3 text-muted fst-italic">
-                Gracias por confiar en nuestro trabajo 💖
-            </p>
-        </div>
-    </div>
-
-</section>
-
-
-<footer class="site-footer bg-light text-dark py-5">
-  <div class="container text-center">
-
-    <h2 class="footer-title text-danger mb-3">
-      Conéctate con nosotros
-    </h2>
-
-    <p class="footer-text text-muted mb-4">
-      Síguenos y conoce nuestras últimas colecciones y novedades.
-    </p>
-
-    <!-- Redes -->
-    <div class="footer-social d-flex justify-content-center gap-4 mb-4 fs-2">
-      <a href="https://www.facebook.com/share/1HS85CzLwk/" target="_blank" class="text-dark">
-        <i class="fab fa-facebook"></i>
-      </a>
-      <a href="https://www.instagram.com/gm_gisylmood" target="_blank" class="text-dark">
-        <i class="fab fa-instagram"></i>
-      </a>
-      <a href="https://www.tiktok.com/@gisylmood" target="_blank" class="text-dark">
-        <i class="fab fa-tiktok"></i>
-      </a>
-      <a href="https://wa.me/51949626583" target="_blank" class="text-dark">
-        <i class="fab fa-whatsapp"></i>
-      </a>
-    </div>
-
-    <p class="footer-copy text-muted mb-0">
-      Gracias por ser parte de nuestra comunidad 💖
-    </p>
-
-  </div>
-</footer>
-
-
-
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
