@@ -5,7 +5,10 @@
 
 document.addEventListener('DOMContentLoaded', function () {
 
-  const API_IMAGENES = 'https://catalogo-gym-backend-production.up.railway.app/api/imagenes';
+  const API_USUARIOS  = 'https://catalogo-gym-backend-production.up.railway.app/api/usuarios';
+  // Tu Cloudinary — reemplaza con tus datos
+  const CLOUDINARY_URL    = 'https://api.cloudinary.com/v1_1/TU_CLOUD_NAME/image/upload';
+  const CLOUDINARY_PRESET = 'TU_UPLOAD_PRESET'; // upload preset sin firma (unsigned)
 
   // ── Inyectar HTML del panel ──────────────────────────────────
   document.body.insertAdjacentHTML('beforeend', `
@@ -52,7 +55,6 @@ document.addEventListener('DOMContentLoaded', function () {
     document.body.style.overflow = '';
   }
 
-  // btnAccount controla el PANEL (no el modal directamente)
   btnAccount.addEventListener('click', openPanel);
   btnClose.addEventListener('click', closePanel);
   overlay.addEventListener('click', closePanel);
@@ -163,7 +165,9 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // ── Subir foto al backend ────────────────────────────────────
+  // ── Flujo de subida ──────────────────────────────────────────
+  // 1. Sube la imagen directo a Cloudinary (unsigned upload)
+  // 2. Con la URL devuelta, hace PATCH al backend para guardarla
   async function handleAvatarUpload(file, user) {
     const status = document.getElementById('accUploadStatus');
 
@@ -178,32 +182,49 @@ document.addEventListener('DOMContentLoaded', function () {
 
     showStatus(status, 'loading', '<span class="acc-loader"></span> Subiendo imagen…');
 
+    // Preview local inmediato
+    const localUrl = URL.createObjectURL(file);
+    setAvatarSrc(localUrl);
+    updateNavbarAvatar(localUrl, user);
+
     try {
-      const localUrl = URL.createObjectURL(file);
-      setAvatarSrc(localUrl);
-      updateNavbarAvatar(localUrl, user);
-
+      // ── Paso 1: subir a Cloudinary ──────────────────────────
       const formData = new FormData();
-      formData.append('file',      file);
-      formData.append('usuarioId', user.id);
-      formData.append('tipo',      'perfil');
+      formData.append('file',           file);
+      formData.append('upload_preset',  CLOUDINARY_PRESET);
+      formData.append('folder',         'gm_avatars');
 
-      const res = await fetch(`${API_IMAGENES}/upload`, { method: 'POST', body: formData });
-      if (!res.ok) throw new Error();
+      const cloudRes = await fetch(CLOUDINARY_URL, {
+        method: 'POST',
+        body:   formData
+      });
+      if (!cloudRes.ok) throw new Error('Cloudinary upload failed');
 
-      const data = await res.json();
-      const url  = data.url || data.secure_url || data.imageUrl || localUrl;
+      const cloudData = await cloudRes.json();
+      const url = cloudData.secure_url;
 
-      user.avatarUrl = url;
-      sessionStorage.setItem('gmUser', JSON.stringify(user));
+      // ── Paso 2: guardar URL en el backend ───────────────────
+      const backendRes = await fetch(`${API_USUARIOS}/${user.id}/avatar`, {
+        method:  'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify({ avatarUrl: url })
+      });
+      if (!backendRes.ok) throw new Error('Backend save failed');
+
+      const usuarioActualizado = await backendRes.json();
+
+      // ── Persistir en sesión ─────────────────────────────────
+      const updatedUser = { ...user, avatarUrl: url };
+      sessionStorage.setItem('gmUser', JSON.stringify(updatedUser));
       localStorage.setItem(`gm_avatar_${user.id}`, url);
 
       setAvatarSrc(url);
-      updateNavbarAvatar(url, user);
+      updateNavbarAvatar(url, updatedUser);
       showStatus(status, 'success', '<i class="fa-solid fa-check"></i> Foto actualizada');
       setTimeout(() => { status.style.display = 'none'; }, 3000);
 
-    } catch {
+    } catch (err) {
+      console.error(err);
       showStatus(status, 'error', 'Error al subir. Intenta de nuevo.');
     }
   }
@@ -226,7 +247,7 @@ document.addEventListener('DOMContentLoaded', function () {
     el.innerHTML = html;
   }
 
-  // ── Actualizar botón Account en navbar ───────────────────────
+  // ── Actualizar botón Account en el navbar ────────────────────
   function updateNavbarAvatar(url, user) {
     const btn = document.getElementById('btnAccount');
     if (!btn) return;
@@ -265,7 +286,7 @@ document.addEventListener('DOMContentLoaded', function () {
     window.location.href = location.origin + '/guiselmode/index.html';
   });
 
-  // ── Init: actualizar navbar si ya hay sesión al cargar ───────
+  // ── Init: restaurar navbar si ya hay sesión ──────────────────
   (function initNavbar() {
     const raw = sessionStorage.getItem('gmUser');
     if (!raw) return;
