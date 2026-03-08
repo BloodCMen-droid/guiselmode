@@ -5,6 +5,8 @@
   top: 0; left: 0;
   width: 100%; height: 100%;
   background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   z-index: 9999;
   align-items: center;
   justify-content: center;
@@ -19,21 +21,71 @@
   border: 1px solid rgba(255,255,255,0.1);
   width: 90%;
   max-width: 420px;
-  padding: 40px 36px;
+  padding: 40px 36px 36px;
   position: relative;
+  clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
+  animation: modalIn 0.26s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+@keyframes modalIn {
+  from { opacity: 0; transform: translateY(20px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0)   scale(1); }
 }
 
 .modal__close {
   position: absolute;
-  top: 14px; right: 14px;
+  top: 14px; right: 16px;
   background: none;
   border: none;
-  color: #888;
-  font-size: 1.2rem;
+  color: #555;
+  font-size: 1rem;
   cursor: pointer;
+  transition: color 0.2s;
+  line-height: 1;
 }
-.modal__close:hover { color: #fff; }
+.modal__close:hover { color: #e01c1c; }
 
+/* ─── LOGO G&M ─────────────────────────────────────────────── */
+.modal__logo {
+  text-align: center;
+  margin-bottom: 30px;
+  line-height: 1;
+}
+
+.modal__logo-g,
+.modal__logo-m {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 3rem;
+  letter-spacing: 0.04em;
+  color: #f0f0f0;
+}
+
+.modal__logo-amp {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.5rem;
+  color: #e01c1c;
+  margin: 0 3px;
+}
+
+.modal__logo-sub {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: #555;
+  margin-top: 5px;
+}
+
+.modal__logo::after {
+  content: '';
+  display: block;
+  width: 36px;
+  height: 2px;
+  background: #e01c1c;
+  margin: 10px auto 0;
+}
+
+/* ─── TABS ──────────────────────────────────────────────────── */
 .modal__tabs {
   display: flex;
   border-bottom: 1px solid rgba(255,255,255,0.08);
@@ -53,13 +105,18 @@
   letter-spacing: 0.15em;
   text-transform: uppercase;
   cursor: pointer;
+  transition: color 0.2s;
+  font-family: inherit;
 }
+
+.modal__tab:hover { color: #888; }
 
 .modal__tab.active {
   color: #fff;
   border-bottom-color: #e01c1c;
 }
 
+/* ─── FORM ──────────────────────────────────────────────────── */
 .modal__form {
   display: none;
   flex-direction: column;
@@ -76,7 +133,7 @@
   font-weight: 700;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: #888;
+  color: #666;
   margin-bottom: 6px;
 }
 
@@ -89,17 +146,19 @@
   font-size: 0.9rem;
   outline: none;
   font-family: inherit;
+  transition: border-color 0.2s;
 }
 
 .modal__input:focus {
   border-color: #e01c1c;
 }
 
-.modal__input::placeholder { color: #444; }
+.modal__input::placeholder { color: #333; }
 
+/* ─── SUBMIT ────────────────────────────────────────────────── */
 .modal__submit {
   width: 100%;
-  padding: 12px;
+  padding: 13px;
   background: #e01c1c;
   color: #fff;
   border: none;
@@ -110,11 +169,18 @@
   cursor: pointer;
   margin-top: 4px;
   font-family: inherit;
+  transition: background 0.2s, transform 0.2s;
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
 }
 
-.modal__submit:hover { background: #ff2e2e; }
+.modal__submit:hover:not(:disabled) {
+  background: #ff2e2e;
+  transform: translateY(-2px);
+}
+
 .modal__submit:disabled { opacity: 0.6; cursor: not-allowed; }
 
+/* ─── MSG ───────────────────────────────────────────────────── */
 .modal__msg {
   font-size: 0.8rem;
   text-align: center;
