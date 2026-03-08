@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function () {
           <p class="product-card__category">${producto.categoria?.nombre || ''}</p>
           <h3 class="product-card__name">${producto.titulo}</h3>
 
-          ${producto.descripcion
+          ${producto.adicional
             ? `<p class="product-card__desc">${producto.adicional}</p>`
             : ''}
 
