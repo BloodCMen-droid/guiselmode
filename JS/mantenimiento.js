@@ -336,9 +336,10 @@ document.addEventListener('DOMContentLoaded', function () {
           <h3 class="product-card__name">${p.titulo}</h3>
 
           ${p.descripcion ? `<p class="product-card__desc">${p.descripcion}</p>` : ''}
+          ${p.adicional   ? `<p class="product-card__desc">${p.adicional}</p>`   : ''}
 
           ${tallasTexto ? `
-            <div class="product-card__tallas">
+            <div class="product-card__dtallas">
               <span class="tallas__label">Tallas</span>
               <span class="tallas__list">${tallasTexto}</span>
             </div>` : ''}
