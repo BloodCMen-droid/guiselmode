@@ -12,10 +12,12 @@
   <link rel="stylesheet" href="/guiselmode/CSS/Base/resets.css">
   <link rel="stylesheet" href="/guiselmode/CSS/Base/variables.css">
   <link rel="stylesheet" href="/guiselmode/CSS/Base/global.css">
+
   <link rel="stylesheet" href="/guiselmode/CSS/Componets/navbar.css">
   <link rel="stylesheet" href="/guiselmode/CSS/Componets/footer.css">
   <link rel="stylesheet" href="/guiselmode/CSS/Componets/modal-login.css">
-  
+  <link rel="stylesheet" href="/guiselmode/CSS/Components/account-panel.css">
+
   <link rel="stylesheet" href="/guiselmode/CSS/Pages/nosotros.css">
    <link rel="stylesheet" href="/guiselmode/CSS/Pages/mantenimiento.css">
 </head>
@@ -52,6 +54,17 @@
       </div>
     </div>
   </nav>
+
+ <!-- BUSCADOR -->
+<div class="search-bar" id="searchBar">
+  <div class="search-bar__inner">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <input type="text" id="searchInput" placeholder="Buscar producto… ej: polera, pijama, bordado" autocomplete="off" />
+    <button class="search-bar__close" id="searchClose">✕</button>
+  </div>
+  <div class="search-bar__results" id="searchResults"></div>
+</div>
+
   <!-- HERO -->
   <section class="nos-hero">
     <div class="nos-hero__bg"></div>
@@ -229,6 +242,7 @@
   <script src="/guiselmode/JS/navbar.js"></script>
   <script src="/guiselmode/JS/modal.js"></script>
   <script src="/guiselmode/JS/nosotros.js"></script>
+  <script src="/guiselmode/JS/account.js"></script>
 
 </body>
 </html>
