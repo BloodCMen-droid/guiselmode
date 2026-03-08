@@ -53,9 +53,11 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
   `);
 
-  const overlay    = document.getElementById('modalOverlay');
-  const btnClose   = document.getElementById('modalClose');
-  const btnAccount = document.getElementById('btnAccount');
+  const overlay  = document.getElementById('modalOverlay');
+  const btnClose = document.getElementById('modalClose');
+
+  // ── NOTA: btnAccount ya NO abre este modal directamente.
+  //    Ahora lo controla account.js desde el panel lateral.
 
   function openModal()  {
     overlay.classList.add('open');
@@ -67,7 +69,17 @@ document.addEventListener('DOMContentLoaded', function() {
     document.body.style.overflow = '';
   }
 
-  btnAccount.addEventListener('click', openModal);
+  // Exponer globalmente para que account.js pueda llamarlo
+  window.openLoginModal = function(tab = 'login') {
+    openModal();
+    document.querySelectorAll('.modal__tab').forEach(t => {
+      t.classList.toggle('active', t.dataset.tab === tab);
+    });
+    document.querySelectorAll('.modal__form').forEach(f => f.classList.remove('active'));
+    const formId = tab === 'login' ? 'formLogin' : 'formRegistro';
+    document.getElementById(formId)?.classList.add('active');
+  };
+
   btnClose.addEventListener('click', closeModal);
   overlay.addEventListener('click', (e) => {
     if (e.target === overlay) closeModal();
@@ -127,8 +139,8 @@ document.addEventListener('DOMContentLoaded', function() {
   // Registro — crea la cuenta y luego inicia sesión automáticamente
   document.getElementById('formRegistro').addEventListener('submit', async (e) => {
     e.preventDefault();
-    const msg  = document.getElementById('registroMsg');
-    const btn  = e.target.querySelector('.modal__submit');
+    const msg      = document.getElementById('registroMsg');
+    const btn      = e.target.querySelector('.modal__submit');
     const nombre   = document.getElementById('regNombre').value.trim();
     const email    = document.getElementById('regEmail').value.trim();
     const password = document.getElementById('regPassword').value;
@@ -137,16 +149,10 @@ document.addEventListener('DOMContentLoaded', function() {
     btn.textContent = 'Cargando...';
 
     try {
-      // 1. Crear la cuenta
       const res = await fetch(API, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          nombre,
-          email,
-          passwordHash: password,
-          activo: true
-        })
+        body: JSON.stringify({ nombre, email, passwordHash: password, activo: true })
       });
 
       if (!res.ok) {
@@ -157,7 +163,6 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
       }
 
-      // 2. Auto-login: buscar el usuario recién creado
       const usuarios = await fetch(API).then(r => r.json());
       const user = usuarios.find(u => u.email === email && u.passwordHash === password);
 
@@ -168,7 +173,6 @@ document.addEventListener('DOMContentLoaded', function() {
         e.target.reset();
         setTimeout(() => redirectUser(user), 1500);
       } else {
-        // Cuenta creada pero no se pudo obtener el usuario — redirigir igual
         msg.className = 'modal__msg success';
         msg.textContent = '¡Cuenta creada! ✓';
         e.target.reset();

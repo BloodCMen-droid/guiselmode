@@ -1,23 +1,17 @@
 /* ═══════════════════════════════════════════
    ACCOUNT PANEL — JS/account.js
-   Depende de: modal.js (login/registro)
+   Requiere: modal.js cargado antes
 ═══════════════════════════════════════════ */
 
 document.addEventListener('DOMContentLoaded', function () {
 
-  const API_USUARIOS  = 'https://catalogo-gym-backend-production.up.railway.app/api/usuarios';
-  const API_IMAGENES  = 'https://catalogo-gym-backend-production.up.railway.app/api/imagenes';
+  const API_IMAGENES = 'https://catalogo-gym-backend-production.up.railway.app/api/imagenes';
 
   // ── Inyectar HTML del panel ──────────────────────────────────
   document.body.insertAdjacentHTML('beforeend', `
-
-    <!-- Overlay oscuro -->
     <div class="acc-overlay" id="accOverlay"></div>
-
-    <!-- Panel lateral -->
     <div class="acc-panel" id="accPanel">
 
-      <!-- Header -->
       <div class="acc-panel__head">
         <div class="acc-panel__title">G<span>&amp;</span>M</div>
         <button class="acc-panel__close" id="accClose" aria-label="Cerrar panel">
@@ -25,10 +19,8 @@ document.addEventListener('DOMContentLoaded', function () {
         </button>
       </div>
 
-      <!-- Cuerpo (se rellena dinámicamente) -->
       <div class="acc-panel__body" id="accBody"></div>
 
-      <!-- Footer solo cuando está logueado -->
       <div class="acc-panel__footer" id="accFooter" style="display:none">
         <button class="acc-btn-logout" id="accLogout">
           <i class="fa-solid fa-right-from-bracket"></i> Cerrar sesión
@@ -38,13 +30,12 @@ document.addEventListener('DOMContentLoaded', function () {
     </div>
   `);
 
-  // ── Referencias ──────────────────────────────────────────────
-  const overlay   = document.getElementById('accOverlay');
-  const panel     = document.getElementById('accPanel');
-  const body      = document.getElementById('accBody');
-  const footer    = document.getElementById('accFooter');
-  const btnClose  = document.getElementById('accClose');
-  const btnLogout = document.getElementById('accLogout');
+  const overlay    = document.getElementById('accOverlay');
+  const panel      = document.getElementById('accPanel');
+  const body       = document.getElementById('accBody');
+  const footer     = document.getElementById('accFooter');
+  const btnClose   = document.getElementById('accClose');
+  const btnLogout  = document.getElementById('accLogout');
   const btnAccount = document.getElementById('btnAccount');
 
   // ── Abrir / cerrar ───────────────────────────────────────────
@@ -61,24 +52,20 @@ document.addEventListener('DOMContentLoaded', function () {
     document.body.style.overflow = '';
   }
 
+  // btnAccount controla el PANEL (no el modal directamente)
   btnAccount.addEventListener('click', openPanel);
   btnClose.addEventListener('click', closePanel);
   overlay.addEventListener('click', closePanel);
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closePanel(); });
 
-  // ── Render dinámico según sesión ─────────────────────────────
+  // ── Render según sesión ──────────────────────────────────────
   function renderPanel() {
     const raw  = sessionStorage.getItem('gmUser');
     const user = raw ? JSON.parse(raw) : null;
-
-    if (!user) {
-      renderGuest();
-    } else {
-      renderProfile(user);
-    }
+    user ? renderProfile(user) : renderGuest();
   }
 
-  // ── Estado GUEST ─────────────────────────────────────────────
+  // ── SIN SESIÓN ───────────────────────────────────────────────
   function renderGuest() {
     footer.style.display = 'none';
     body.innerHTML = `
@@ -89,8 +76,7 @@ document.addEventListener('DOMContentLoaded', function () {
         <div class="acc-guest__tagline">
           BIENVENIDO A<br><span>G&amp;M</span>
         </div>
-        <p class="acc-guest__sub">Inicia sesión para acceder a tu perfil y más</p>
-
+        <p class="acc-guest__sub">Inicia sesión para acceder a tu perfil</p>
         <div class="acc-guest__btns">
           <button class="acc-btn-primary" id="accGuestLogin">
             <i class="fa-solid fa-right-to-bracket"></i>&nbsp; Iniciar sesión
@@ -102,38 +88,21 @@ document.addEventListener('DOMContentLoaded', function () {
         </div>
       </div>`;
 
-    // Al presionar, cierra el panel y abre el modal de login/registro
     document.getElementById('accGuestLogin').addEventListener('click', () => {
       closePanel();
-      // Abre el modal y activa tab "login"
-      openLoginModal('login');
+      window.openLoginModal?.('login');
     });
     document.getElementById('accGuestRegister').addEventListener('click', () => {
       closePanel();
-      openLoginModal('registro');
+      window.openLoginModal?.('registro');
     });
   }
 
-  // Helper: abre el modal de login y activa el tab deseado
-  function openLoginModal(tab) {
-    const overlay = document.getElementById('modalOverlay');
-    if (!overlay) return;
-    overlay.classList.add('open');
-    document.body.style.overflow = 'hidden';
-    // Activar tab correcto
-    document.querySelectorAll('.modal__tab').forEach(t => {
-      t.classList.toggle('active', t.dataset.tab === tab);
-    });
-    document.querySelectorAll('.modal__form').forEach(f => f.classList.remove('active'));
-    const formId = tab === 'login' ? 'formLogin' : 'formRegistro';
-    document.getElementById(formId)?.classList.add('active');
-  }
-
-  // ── Estado PERFIL ────────────────────────────────────────────
+  // ── CON SESIÓN ───────────────────────────────────────────────
   function renderProfile(user) {
     footer.style.display = 'block';
 
-    const inicial  = (user.nombre || 'U').charAt(0).toUpperCase();
+    const inicial   = (user.nombre || 'U').charAt(0).toUpperCase();
     const avatarSrc = user.avatarUrl || localStorage.getItem(`gm_avatar_${user.id}`);
     const rolLabel  = user.rol === 'admin' ? 'Administrador' : 'Cliente';
 
@@ -143,10 +112,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     body.innerHTML = `
       <div class="acc-profile">
-
-        <!-- Hero / avatar -->
         <div class="acc-profile__hero">
-          <div class="acc-avatar-wrap" id="accAvatarWrap" title="Cambiar foto">
+          <div class="acc-avatar-wrap" id="accAvatarWrap" title="Cambiar foto de perfil">
             ${avatarHTML}
             <div class="acc-avatar-overlay">
               <i class="fa-solid fa-camera"></i>
@@ -156,16 +123,13 @@ document.addEventListener('DOMContentLoaded', function () {
             </div>
             <input type="file" id="accAvatarInput" accept="image/*">
           </div>
-
           <div class="acc-profile__name">${user.nombre || 'Usuario'}</div>
           <div class="acc-profile__email">${user.email || ''}</div>
           <div class="acc-role-badge">${rolLabel}</div>
         </div>
 
-        <!-- Status de upload -->
         <div class="acc-upload-status" id="accUploadStatus"></div>
 
-        <!-- Info -->
         <div class="acc-profile__info">
           <div class="acc-info-row">
             <div class="acc-info-label">Nombre</div>
@@ -181,7 +145,6 @@ document.addEventListener('DOMContentLoaded', function () {
           </div>
         </div>
 
-        <!-- Próximamente -->
         <div class="acc-coming-soon">
           <div class="acc-coming-soon__icons">
             <i class="fa-regular fa-heart"></i>
@@ -190,25 +153,20 @@ document.addEventListener('DOMContentLoaded', function () {
           <div class="acc-coming-soon__label">Próximamente</div>
           <div class="acc-coming-soon__text">Favoritos y lista de deseos</div>
         </div>
-
       </div>`;
 
-    // Subir avatar
     const avatarWrap  = document.getElementById('accAvatarWrap');
     const avatarInput = document.getElementById('accAvatarInput');
-
     avatarWrap.addEventListener('click', () => avatarInput.click());
     avatarInput.addEventListener('change', () => {
-      const file = avatarInput.files[0];
-      if (file) handleAvatarUpload(file, user);
+      if (avatarInput.files[0]) handleAvatarUpload(avatarInput.files[0], user);
     });
   }
 
-  // ── Subir imagen al backend ──────────────────────────────────
+  // ── Subir foto al backend ────────────────────────────────────
   async function handleAvatarUpload(file, user) {
     const status = document.getElementById('accUploadStatus');
 
-    // Validar tipo y tamaño (max 3MB)
     if (!file.type.startsWith('image/')) {
       showStatus(status, 'error', 'Solo se permiten imágenes.');
       return;
@@ -221,48 +179,45 @@ document.addEventListener('DOMContentLoaded', function () {
     showStatus(status, 'loading', '<span class="acc-loader"></span> Subiendo imagen…');
 
     try {
-      // Preview inmediato mientras sube
       const localUrl = URL.createObjectURL(file);
+      setAvatarSrc(localUrl);
       updateNavbarAvatar(localUrl, user);
 
-      // Construir FormData para el backend
       const formData = new FormData();
       formData.append('file',      file);
       formData.append('usuarioId', user.id);
       formData.append('tipo',      'perfil');
 
-      const res = await fetch(`${API_IMAGENES}/upload`, {
-        method: 'POST',
-        body:   formData
-      });
-
-      if (!res.ok) throw new Error('Upload failed');
+      const res = await fetch(`${API_IMAGENES}/upload`, { method: 'POST', body: formData });
+      if (!res.ok) throw new Error();
 
       const data = await res.json();
       const url  = data.url || data.secure_url || data.imageUrl || localUrl;
 
-      // Guardar en sessionStorage y localStorage
       user.avatarUrl = url;
       sessionStorage.setItem('gmUser', JSON.stringify(user));
       localStorage.setItem(`gm_avatar_${user.id}`, url);
 
-      // Actualizar avatar en el panel y navbar
-      const avatarEl = document.getElementById('accAvatarImg');
-      if (avatarEl) {
-        if (avatarEl.tagName === 'IMG') {
-          avatarEl.src = url;
-        } else {
-          // Era un div con inicial, reemplazar por img
-          avatarEl.outerHTML = `<img class="acc-avatar" src="${url}" alt="Avatar" id="accAvatarImg">`;
-        }
-      }
+      setAvatarSrc(url);
       updateNavbarAvatar(url, user);
-
       showStatus(status, 'success', '<i class="fa-solid fa-check"></i> Foto actualizada');
       setTimeout(() => { status.style.display = 'none'; }, 3000);
 
     } catch {
-      showStatus(status, 'error', 'Error al subir la imagen. Intenta de nuevo.');
+      showStatus(status, 'error', 'Error al subir. Intenta de nuevo.');
+    }
+  }
+
+  function setAvatarSrc(url) {
+    const el = document.getElementById('accAvatarImg');
+    if (!el) return;
+    if (el.tagName === 'IMG') {
+      el.src = url;
+    } else {
+      const img = Object.assign(document.createElement('img'), {
+        className: 'acc-avatar', src: url, alt: 'Avatar', id: 'accAvatarImg'
+      });
+      el.replaceWith(img);
     }
   }
 
@@ -271,62 +226,52 @@ document.addEventListener('DOMContentLoaded', function () {
     el.innerHTML = html;
   }
 
-  // ── Actualizar ícono del navbar ──────────────────────────────
+  // ── Actualizar botón Account en navbar ───────────────────────
   function updateNavbarAvatar(url, user) {
     const btn = document.getElementById('btnAccount');
     if (!btn) return;
     const inicial = (user.nombre || 'U').charAt(0).toUpperCase();
-
-    // Quitar ícono fa original y span "Account", poner avatar
-    const icon = btn.querySelector('i');
+    const icon = btn.querySelector('i, .acc-nav-avatar, .acc-nav-initial');
     const span = btn.querySelector('span');
 
-    if (url) {
-      if (icon) icon.replaceWith(Object.assign(document.createElement('img'), {
-        src: url,
-        alt: inicial,
-        className: 'acc-nav-avatar'
-      }));
-    } else {
-      if (icon) {
-        icon.replaceWith(Object.assign(document.createElement('span'), {
-          className: 'acc-nav-initial',
-          textContent: inicial
-        }));
-      }
+    if (icon) {
+      const newEl = url
+        ? Object.assign(document.createElement('img'), {
+            src: url, alt: inicial, className: 'acc-nav-avatar'
+          })
+        : Object.assign(document.createElement('span'), {
+            className: 'acc-nav-initial', textContent: inicial
+          });
+      icon.replaceWith(newEl);
     }
     if (span) span.textContent = user.nombre?.split(' ')[0] || 'Perfil';
   }
 
-  // ── Cerrar sesión ────────────────────────────────────────────
+  // ── Logout ───────────────────────────────────────────────────
   btnLogout.addEventListener('click', () => {
     sessionStorage.removeItem('gmUser');
     closePanel();
 
-    // Restaurar botón navbar
     const btn = document.getElementById('btnAccount');
     if (btn) {
-      const avatarOrInitial = btn.querySelector('.acc-nav-avatar, .acc-nav-initial');
+      const old = btn.querySelector('.acc-nav-avatar, .acc-nav-initial');
+      if (old) old.replaceWith(Object.assign(document.createElement('i'), {
+        className: 'fa-regular fa-user'
+      }));
       const span = btn.querySelector('span');
-      if (avatarOrInitial) {
-        avatarOrInitial.replaceWith(Object.assign(document.createElement('i'), {
-          className: 'fa-regular fa-user'
-        }));
-      }
       if (span) span.textContent = 'Account';
     }
 
-    // Redirigir al home
     window.location.href = location.origin + '/guiselmode/index.html';
   });
 
-  // ── Init: si ya hay sesión, actualizar navbar ────────────────
+  // ── Init: actualizar navbar si ya hay sesión al cargar ───────
   (function initNavbar() {
     const raw = sessionStorage.getItem('gmUser');
     if (!raw) return;
     const user = JSON.parse(raw);
-    const url  = user.avatarUrl || localStorage.getItem(`gm_avatar_${user.id}`);
-    updateNavbarAvatar(url || null, user);
+    const url  = user.avatarUrl || localStorage.getItem(`gm_avatar_${user.id}`) || null;
+    updateNavbarAvatar(url, user);
   })();
 
 });
