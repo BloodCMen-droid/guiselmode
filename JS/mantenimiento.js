@@ -240,18 +240,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
       // Enriquecer con tallas e imagen principal
       await Promise.all(allProductos.map(async p => {
-             try {
-               const [tRes, iRes] = await Promise.all([
-                 fetch(`${API_TALLAS}/${p.id}`),
-                 fetch(`${API}/imagenes/producto/${p.id}/principal`)
-               ]);
-              p._tallas   = tRes.ok ? await tRes.json() : [];
-               p._imgPrinc = iRes.ok ? await iRes.json() : null;
-               } catch {
-               p._tallas = []; p._imgPrinc = null;
-             }
-           }));
-
+        try {
+         const tRes = await fetch(`${API_TALLAS}/${p.id}`);
+         p._tallas = tRes.ok ? await tRes.json() : [];
+       } catch {
+         p._tallas = [];
+       }
+        try {
+         const iRes = await fetch(`${API}/imagenes/producto/${p.id}/principal`);
+         p._imgPrinc = iRes.ok ? await iRes.json() : null;
+        } catch {
+          p._imgPrinc = null;
+       }
+      }));
       // Insertar cards en sus grids
       allProductos.forEach(p => {
         const codigo = p.categoria?.codigo;
