@@ -294,7 +294,7 @@ document.addEventListener('DOMContentLoaded', function () {
       : 'https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=600&q=80';
 
     const tallasTexto = (p._tallas || []).length > 0
-      ? p._tallas.map(t => t.talla?.nombre || t.nombre || '?').join(' · ')
+      ? p._tallas.map(t => t.talla?.nombre).filter(Boolean).join(' · ')
       : null;
 
     const precioUnidad = `S/ ${parseFloat(p.precioUnidad || p.precio_unidad || 0).toFixed(2)}`;
@@ -425,7 +425,7 @@ document.addEventListener('DOMContentLoaded', function () {
     $('mf-categoria').value       = p.categoriaId     || p.categoria?.id  || '';
 
     // Tallas seleccionadas
-    const selIds = (p._tallas || []).map(t => t.talla?.id || t.tallaId || t.id).filter(Boolean);
+    const selIds = (p._tallas || []).map(t => t.talla?.id).filter(Boolean);
     renderTallasCheckboxes(selIds);
 
     // Imágenes existentes
