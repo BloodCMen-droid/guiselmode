@@ -412,6 +412,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   window.mantEditarProducto = async function(id) {
     const p = allProductos.find(x => x.id === id);
+     console.log('_tallas del producto:', p._tallas); 
     if (!p) return;
 
     $('mantModalTitle').innerHTML = 'EDITAR <em>PRODUCTO</em>';
