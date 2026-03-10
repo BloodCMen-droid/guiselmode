@@ -395,13 +395,10 @@
     min-height: 260px;
   }
 
-  .prod-modal__close {
-    position: fixed;
-    top: 12px;
-    right: 12px;
-    z-index: 999;
-    background: rgba(0,0,0,0.85);
-    border-color: rgba(255,255,255,0.2);
+  .prod-modal-overlay {
+    align-items: flex-start;
+    padding: 0;
+    padding-top: var(--navbar-height);  /* ← este cambio */
   }
 
   .prod-modal__info {
