@@ -14,26 +14,27 @@ document.addEventListener('DOMContentLoaded', function () {
   // ── HAMBURGER / MENÚ MÓVIL ──
   if (hamburger && navMenu) {
 
-    const overlay = document.createElement('div');
-    overlay.className = 'navbar__overlay';
-    document.body.appendChild(overlay);
-
     function openMenu() {
       navMenu.classList.add('open');
       hamburger.classList.add('active');
-      overlay.classList.add('open');
       document.body.style.overflow = 'hidden';
     }
 
     function closeMenu() {
       navMenu.classList.remove('open');
       hamburger.classList.remove('active');
-      overlay.classList.remove('open');
       document.body.style.overflow = '';
     }
 
     hamburger.addEventListener('click', () => {
       navMenu.classList.contains('open') ? closeMenu() : openMenu();
+    });
+
+    // Cierra al tocar fuera del menú
+    document.addEventListener('click', (e) => {
+      if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
+        closeMenu();
+      }
     });
 
     document.addEventListener('keydown', e => {
@@ -63,19 +64,17 @@ document.addEventListener('DOMContentLoaded', function () {
     async function openSearch() {
       searchBar.classList.add('open');
       searchInput.focus();
-      // Si no hay productos cargados, los trae de la API
       if (!window.allProductos?.length) {
         try {
-          const res = await fetch('https://catalogo-gym-backend-production.up.railway.app/api/productos');
-              const prods = await res.json();
-              // Traer imagen principal de cada producto
-              await Promise.all(prods.map(async p => {
-                try {
-                  const iRes = await fetch(`https://catalogo-gym-backend-production.up.railway.app/api/imagenes/producto/${p.id}/principal`);
-                  if (iRes.ok) p._imgPrinc = await iRes.json();
-                } catch {}
-              }));
-              window.allProductos = prods;
+          const res   = await fetch('https://catalogo-gym-backend-production.up.railway.app/api/productos');
+          const prods = await res.json();
+          await Promise.all(prods.map(async p => {
+            try {
+              const iRes = await fetch(`https://catalogo-gym-backend-production.up.railway.app/api/imagenes/producto/${p.id}/principal`);
+              if (iRes.ok) p._imgPrinc = await iRes.json();
+            } catch {}
+          }));
+          window.allProductos = prods;
         } catch {
           console.warn('No se pudo cargar productos para el buscador.');
         }
