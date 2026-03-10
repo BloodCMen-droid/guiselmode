@@ -377,9 +377,16 @@
 @media (max-width: 680px) {
   .prod-modal {
     grid-template-columns: 1fr;
-    max-height: 95vh;
+    max-height: 85vh;
+    overflow-y: auto;
   }
 
+  .prod-modal__close {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 999;
+  }
   .prod-modal__carousel {
     min-height: 280px;
   }

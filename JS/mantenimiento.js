@@ -303,17 +303,19 @@ document.addEventListener('DOMContentLoaded', function () {
       : null;
 
     return `
-      <div class="product-card product-card--admin" data-id="${p.id}" onclick="abrirModalProducto(${p.id})" style="cursor:pointer">
+      <div class="product-card product-card--admin" data-id="${p.id}" 
+           onclick="if(!event.target.closest('button')) abrirModalProducto(${p.id})" 
+           style="cursor:pointer">
 
         <div class="card-admin-actions">
           <button class="card-admin-btn card-admin-btn--edit"
                   title="Editar"
-                  onclick="(function(e){ e.stopPropagation(); e.preventDefault(); mantEditarProducto(${p.id}); })(event)">
+                  onclick="mantEditarProducto(${p.id})">
             <i class="fa-solid fa-pen"></i>
           </button>
           <button class="card-admin-btn card-admin-btn--delete"
                   title="Eliminar"
-                  onclick="(function(e){ e.stopPropagation(); e.preventDefault(); mantEliminarConfirm(${p.id}, '${p.titulo.replace(/'/g, "\\'")}'); })(event)">
+                  onclick="mantEliminarConfirm(${p.id}, '${p.titulo.replace(/'/g, "\\'")}')">
             <i class="fa-solid fa-trash"></i>
           </button>
         </div>
@@ -324,7 +326,7 @@ document.addEventListener('DOMContentLoaded', function () {
           <div class="product-card__overlay">
             <button class="product-card__pedir"
                     style="border:none;cursor:pointer;background:var(--accent-red);color:#fff;padding:8px 18px;font-family:var(--font-body);font-size:.85rem;font-weight:600;letter-spacing:.06em"
-                    onclick="(function(e){ e.stopPropagation(); e.preventDefault(); mantEditarProducto(${p.id}); })(event)">
+                    onclick="mantEditarProducto(${p.id})">
               <i class="fa-solid fa-pen"></i> Editar
             </button>
           </div>
@@ -359,13 +361,13 @@ document.addEventListener('DOMContentLoaded', function () {
           <div class="product-card__footer">
             <button class="product-card__btn-pedir"
                     style="border:none;cursor:pointer;background:var(--accent-red);color:#fff"
-                    onclick="(function(e){ e.stopPropagation(); e.preventDefault(); mantEditarProducto(${p.id}); })(event)">
+                    onclick="mantEditarProducto(${p.id})">
               <i class="fa-solid fa-pen"></i> Editar producto
             </button>
             <button class="product-card__wishlist"
                     style="border:none;cursor:pointer;"
                     title="Eliminar"
-                    onclick="(function(e){ e.stopPropagation(); e.preventDefault(); mantEliminarConfirm(${p.id}, '${p.titulo.replace(/'/g, "\\'")}'); })(event)">
+                    onclick="mantEliminarConfirm(${p.id}, '${p.titulo.replace(/'/g, "\\'")}')">
               <i class="fa-solid fa-trash" style="color:var(--accent-red)"></i>
             </button>
           </div>
