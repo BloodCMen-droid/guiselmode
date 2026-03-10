@@ -255,6 +255,7 @@
   font-size: .9rem;
   transition: border-color .2s;
   border-radius: 0;
+  appearance: none;
   -webkit-appearance: none;
 }
 .mant-form-group input:focus,
