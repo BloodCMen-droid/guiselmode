@@ -289,7 +289,6 @@ document.addEventListener('DOMContentLoaded', function () {
      (igual que productos.js pero con botones)
   ══════════════════════════════════════════ */
   function crearCardAdmin(p) {
-    console.log('imgPrinc de', p.titulo, ':', p._imgPrinc);
     const imgUrl = p._imgPrinc
       ? optimizarUrlCloudinary(p._imgPrinc.url)
       : 'https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=600&q=80';
