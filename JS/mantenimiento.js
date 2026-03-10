@@ -303,7 +303,7 @@ document.addEventListener('DOMContentLoaded', function () {
       : null;
 
     return `
-      <div class="product-card product-card--admin" data-id="${p.id}">
+      <div class="product-card product-card--admin" data-id="${p.id}" onclick="abrirModalProducto(${p.id})" style="cursor:pointer">
 
         <!-- Botones admin sobre imagen -->
         <div class="card-admin-actions">
