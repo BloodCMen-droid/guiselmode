@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const link = `${WHATSAPP}?text=${msg}`;
 
     return `
-      <div class="product-card" onclick="abrirModalProducto(${producto.id})" style="cursor:pointer">
+      <div class="product-card" onclick="if(!event.target.closest('button') && !event.target.closest('a')) abrirModalProducto(${producto.id})" style="cursor:pointer">
         <div class="product-card__img-wrap">
           <span class="product-card__badge">Nuevo</span>
           <img src="${imgUrl}"
