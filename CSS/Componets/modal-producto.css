@@ -375,28 +375,37 @@
 
 /* ── RESPONSIVE ── */
 @media (max-width: 680px) {
+  .prod-modal-overlay {
+    align-items: flex-start;
+    padding: 0;
+  }
+
   .prod-modal {
     grid-template-columns: 1fr;
-    max-height: 85vh;
+    max-height: 100dvh;
     overflow-y: auto;
+    border-radius: 0;
+  }
+
+  .prod-modal__carousel {
+    min-height: 260px;
+  }
+
+  .carousel__slide {
+    min-height: 260px;
   }
 
   .prod-modal__close {
     position: fixed;
-    top: 10px;
-    right: 10px;
+    top: 12px;
+    right: 12px;
     z-index: 999;
-  }
-  .prod-modal__carousel {
-    min-height: 280px;
-  }
-
-  .carousel__slide {
-    min-height: 280px;
+    background: rgba(0,0,0,0.85);
+    border-color: rgba(255,255,255,0.2);
   }
 
   .prod-modal__info {
-    padding: 24px 20px 28px;
+    padding: 24px 20px 40px;
   }
 
   .prod-modal__title {
