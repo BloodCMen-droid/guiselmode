@@ -328,3 +328,91 @@
   font-size: .9rem;
 }
 .search-empty i { display: block; font-size: 1.8rem; margin-bottom: 8px; color: var(--accent-red); opacity: .4; }
+
+
+/*MODFY 1*/
+@media (max-width: 768px) {
+
+  /* Overlay: oscurece solo el FONDO (detrás del panel) */
+  .navbar__overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 1100;               /* debajo del nav panel */
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+  }
+
+  .navbar__overlay.open {
+    opacity: 1;
+    pointer-events: auto;        /* cierra al tocar fondo */
+  }
+
+  /* Panel de navegación: encima del overlay */
+  .navbar__nav {
+    position: fixed;
+    top: var(--navbar-height);
+    right: 0;
+    width: 72%;
+    max-width: 300px;
+    max-height: calc(100vh - var(--navbar-height));
+    background: rgba(8, 8, 8, 0.97);   /* oscuro pero opaco */
+    backdrop-filter: blur(28px) saturate(180%);
+    -webkit-backdrop-filter: blur(28px) saturate(180%);
+    border-left: 1px solid rgba(255,255,255,0.1);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 44px 32px 32px;
+    z-index: 1200;               /* encima del overlay */
+    transform: translateX(100%);
+    transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+    pointer-events: none;
+    overflow-y: auto;
+  }
+
+  .navbar__nav.open {
+    transform: translateX(0);
+    pointer-events: auto;
+  }
+
+  /* Links del menú: claros y legibles */
+  .navbar__nav a {
+    padding: 15px 0;
+    font-size: 1.3rem;
+    font-family: var(--font-display);
+    letter-spacing: 0.1em;
+    width: 100%;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    color: #ffffff;              /* ← blanco puro, siempre visible */
+    display: block;
+    position: relative;
+    z-index: 1200;
+    pointer-events: auto;
+    transition: color 0.2s ease, padding-left 0.2s ease;
+  }
+
+  .navbar__nav a:hover {
+    color: var(--accent-red);
+    padding-left: 10px;
+  }
+
+  .navbar__nav a::after { display: none; }
+
+  /* Etiqueta "CATEGORÍAS" arriba del panel */
+  .navbar__nav::before {
+    content: "CATEGORÍAS";
+    display: block;
+    font-size: 0.55rem;
+    font-weight: 800;
+    letter-spacing: 0.32em;
+    color: var(--accent-red);
+    background: rgba(224, 28, 28, 0.1);
+    border: 1px solid rgba(224, 28, 28, 0.3);
+    padding: 4px 10px;
+    margin-bottom: 20px;
+    align-self: flex-start;
+  }
+}

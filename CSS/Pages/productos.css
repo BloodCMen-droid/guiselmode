@@ -416,3 +416,58 @@
 .product-card__btn-pedir i {
   font-size: 0.9rem;
 }
+
+/*
+cambio 1
+*/
+@media (max-width: 768px) {
+
+  /* Filtros: scroll horizontal, una sola fila sutil */
+  .productos-filtros {
+    padding: 10px 0;
+    background: transparent;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .filtros__wrap {
+    display: flex;
+    flex-wrap: nowrap;           /* ← una sola fila */
+    overflow-x: auto;
+    gap: 6px;
+    padding: 4px 16px 8px;
+    scrollbar-width: none;       /* Firefox */
+    -ms-overflow-style: none;    /* IE/Edge */
+  }
+
+  .filtros__wrap::-webkit-scrollbar {
+    display: none;               /* Chrome/Safari */
+  }
+
+  .filtro__btn {
+    flex-shrink: 0;              /* no se comprime */
+    font-size: 0.6rem;
+    padding: 5px 11px;
+    border-color: rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.45);
+    background: rgba(255,255,255,0.03);
+    letter-spacing: 0.08em;
+  }
+
+  .filtro__btn.active {
+    background: var(--accent-red);
+    border-color: var(--accent-red);
+    color: #fff;
+  }
+
+  /* Grid productos */
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .cat-section__title { font-size: 1.4rem; }
+}
+
+@media (max-width: 400px) {
+  .products-grid { gap: 8px; }
+}
