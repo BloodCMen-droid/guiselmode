@@ -452,3 +452,19 @@
   .mant-modal__header,
   .mant-modal__footer { padding-left: 20px; padding-right: 20px; }
 }
+
+/* ── Pegar al FINAL de mantenimiento.css ── */
+
+/* Quitar sticky de la barra admin — fluye normal con el scroll */
+.mant-admin-bar {
+  position: static !important;
+  top: unset !important;
+  z-index: unset !important;
+}
+
+/* Los filtros sticky ya tienen z-index:100 en productos.css, está bien */
+/* Solo nos aseguramos que no haya solapamiento */
+.productos-filtros {
+  top: var(--navbar-height);
+  z-index: 100;
+}
