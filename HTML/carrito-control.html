@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#e01c1c">
+  <title>Pedido — G&M G'ysil Mood</title>
+  <meta name="robots" content="noindex, nofollow">
+
+  <link rel="stylesheet" href="/guiselmode/CSS/Base/resets.css">
+  <link rel="stylesheet" href="/guiselmode/CSS/Base/variables.css">
+  <link rel="stylesheet" href="/guiselmode/CSS/Base/global.css">
+  <link rel="stylesheet" href="/guiselmode/CSS/Componets/navbar.css">
+  <link rel="stylesheet" href="/guiselmode/CSS/Componets/footer.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+    /* ── HERO ── */
+    .pedido-hero {
+      padding: 100px 0 40px;
+      border-bottom: 1px solid var(--border);
+    }
+    .pedido-hero__tag {
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--accent-red);
+      margin-bottom: 10px;
+    }
+    .pedido-hero__title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      letter-spacing: 0.06em;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+    .pedido-hero__title em {
+      color: var(--accent-red);
+      font-style: normal;
+    }
+    .pedido-hero__meta {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .pedido-hero__meta span {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .pedido-hero__meta i { color: var(--accent-red); }
+
+    /* ── MAIN ── */
+    .pedido-main {
+      padding: 48px 0 80px;
+    }
+
+    /* ── GRID de productos ── */
+    .pedido-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    /* ── Card producto ── */
+    .pedido-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+    .pedido-card:hover {
+      border-color: rgba(224,28,28,0.3);
+    }
+    .pedido-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent-red), transparent 70%);
+    }
+    .pedido-card__img {
+      width: 100%;
+      aspect-ratio: 1;
+      overflow: hidden;
+      background: #0d0d0d;
+    }
+    .pedido-card__img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .pedido-card:hover .pedido-card__img img {
+      transform: scale(1.04);
+    }
+    .pedido-card__img-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 2rem;
+    }
+    .pedido-card__body {
+      padding: 16px 18px 18px;
+    }
+    .pedido-card__cat {
+      font-size: 0.58rem;
+      font-weight: 700;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--accent-red);
+      margin-bottom: 6px;
+    }
+    .pedido-card__titulo {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      letter-spacing: 0.05em;
+      color: var(--text-primary);
+      line-height: 1.1;
+      margin-bottom: 12px;
+    }
+    .pedido-card__precios {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-top: 10px;
+      border-top: 1px solid var(--border);
+    }
+    .pedido-card__precio {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      color: var(--text-primary);
+      letter-spacing: 0.04em;
+    }
+    .pedido-card__precio-label {
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 2px;
+    }
+    .pedido-card__precio-conjunto {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      color: var(--accent-red);
+      letter-spacing: 0.04em;
+    }
+    .pedido-card__div {
+      width: 1px;
+      height: 32px;
+      background: var(--border);
+    }
+    .pedido-card__link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 12px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .pedido-card__link:hover { color: var(--accent-red); }
+
+    /* ── RESUMEN total ── */
+    .pedido-resumen {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 28px 32px;
+      max-width: 480px;
+      position: relative;
+    }
+    .pedido-resumen::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent-red), transparent 70%);
+    }
+    .pedido-resumen__title {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      letter-spacing: 0.08em;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+    }
+    .pedido-resumen__line {
+      width: 100%;
+      height: 1px;
+      background: var(--border);
+      margin: 12px 0;
+    }
+    .pedido-resumen__item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      padding: 4px 0;
+    }
+    .pedido-resumen__total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 4px;
+    }
+    .pedido-resumen__total-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .pedido-resumen__total-val {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      color: var(--accent-red);
+      letter-spacing: 0.04em;
+    }
+
+    /* ── ESTADOS ── */
+    .pedido-loading,
+    .pedido-error,
+    .pedido-notfound {
+      text-align: center;
+      padding: 80px 20px;
+      color: var(--text-muted);
+    }
+    .pedido-loading i,
+    .pedido-error i,
+    .pedido-notfound i {
+      font-size: 3rem;
+      margin-bottom: 16px;
+      display: block;
+      color: var(--accent-red);
+    }
+    .pedido-loading p,
+    .pedido-error p,
+    .pedido-notfound p {
+      font-size: 1rem;
+      color: var(--text-secondary);
+    }
+
+    @media (max-width: 600px) {
+      .pedido-grid {
+        grid-template-columns: 1fr;
+      }
+      .pedido-resumen {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar__inner">
+      <a href="/guiselmode/index.html" class="navbar__logo">G<span>&</span>M</a>
+      <button class="navbar__hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="navbar__nav" id="navMenu">
+        <li><a href="/guiselmode/HTML/productos.html">|| Productos ||</a></li>
+        <li><a href="/guiselmode/HTML/nosotros.html">|| Nosotros ||</a></li>
+      </ul>
+      <div class="navbar__actions">
+        <button class="navbar__action-btn" title="Buscar">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <span>Buscar</span>
+        </button>
+        <button class="navbar__action-btn" title="Mi cuenta" id="btnAccount">
+          <i class="fa-regular fa-user"></i>
+          <span>Account</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="pedido-hero">
+    <div class="container">
+      <p class="pedido-hero__tag">Pedido del cliente</p>
+      <h1 class="pedido-hero__title">Detalle del <em>Pedido</em></h1>
+      <div class="pedido-hero__meta" id="pedidoMeta">
+        <span><i class="fa-solid fa-spinner fa-spin"></i> Cargando...</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTENIDO -->
+  <main class="pedido-main">
+    <div class="container" id="pedidoContenido">
+      <div class="pedido-loading">
+        <i class="fa-solid fa-spinner fa-spin"></i>
+        <p>Cargando pedido...</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__bottom">
+        <p class="footer__copy">© 2025 <span>G&M</span> — Panel de gestión</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/guiselmode/JS/navbar.js"></script>
+
+  <script>
+  const API_BASE = 'https://catalogo-gym-backend-production.up.railway.app';
+
+  document.addEventListener('DOMContentLoaded', async () => {
+    const params  = new URLSearchParams(window.location.search);
+    const pedidoId = params.get('id');
+    const contenido = document.getElementById('pedidoContenido');
+    const meta      = document.getElementById('pedidoMeta');
+
+    // Sin ID en la URL
+    if (!pedidoId) {
+      contenido.innerHTML = `
+        <div class="pedido-notfound">
+          <i class="fa-solid fa-link-slash"></i>
+          <p>No se proporcionó un ID de pedido válido.</p>
+        </div>`;
+      meta.innerHTML = '<span><i class="fa-solid fa-circle-xmark"></i> Sin ID</span>';
+      return;
+    }
+
+    try {
+      const res = await fetch(`${API_BASE}/api/pedidos/${pedidoId}`);
+
+      // Pedido no encontrado
+      if (res.status === 404) {
+        contenido.innerHTML = `
+          <div class="pedido-notfound">
+            <i class="fa-solid fa-box-open"></i>
+            <p>Este pedido no existe o ya fue eliminado.</p>
+          </div>`;
+        meta.innerHTML = '<span><i class="fa-solid fa-circle-xmark"></i> Pedido no encontrado</span>';
+        return;
+      }
+
+      if (!res.ok) throw new Error('Error del servidor');
+
+      const pedido = await res.json();
+      const items  = pedido.items || [];
+      const fecha  = new Date(pedido.fecha).toLocaleString('es-PE', {
+        dateStyle: 'medium', timeStyle: 'short'
+      });
+
+      // Metadata del hero
+      meta.innerHTML = `
+        <span><i class="fa-regular fa-calendar"></i> ${fecha}</span>
+        <span><i class="fa-solid fa-box"></i> ${items.length} producto${items.length !== 1 ? 's' : ''}</span>
+        <span><i class="fa-solid fa-circle-check" style="color:#22c55e"></i> ${pedido.estado}</span>
+      `;
+
+      // Calcular total
+      const total = items.reduce((acc, p) => acc + (parseFloat(p.precioUnidad) || 0), 0);
+
+      // Render cards
+      const cardsHTML = items.map(p => `
+        <div class="pedido-card">
+          <div class="pedido-card__img">
+            ${p.imgUrl
+              ? `<img src="${String(p.imgUrl).replace('/upload/', '/upload/w_400,h_400,c_fill,f_webp,q_auto/')}" alt="${p.titulo}" loading="lazy" />`
+              : `<div class="pedido-card__img-placeholder"><i class="fa-regular fa-image"></i></div>`}
+          </div>
+          <div class="pedido-card__body">
+            <p class="pedido-card__cat">${p.categoria || '—'}</p>
+            <h3 class="pedido-card__titulo">${p.titulo}</h3>
+            <div class="pedido-card__precios">
+              <div>
+                <span class="pedido-card__precio-label">Unidad</span>
+                <span class="pedido-card__precio">S/ ${parseFloat(p.precioUnidad).toFixed(2)}</span>
+              </div>
+              ${p.precioTotal ? `
+                <div class="pedido-card__div"></div>
+                <div>
+                  <span class="pedido-card__precio-label">Conjunto</span>
+                  <span class="pedido-card__precio-conjunto">S/ ${parseFloat(p.precioTotal).toFixed(2)}</span>
+                </div>` : ''}
+            </div>
+            ${p.url ? `
+              <a href="${p.url}" target="_blank" class="pedido-card__link">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i> Ver en catálogo
+              </a>` : ''}
+          </div>
+        </div>
+      `).join('');
+
+      // Resumen items
+      const resumenItems = items.map(p => `
+        <div class="pedido-resumen__item">
+          <span>${p.titulo}</span>
+          <span>S/ ${parseFloat(p.precioUnidad).toFixed(2)}</span>
+        </div>
+      `).join('');
+
+      contenido.innerHTML = `
+        <div class="pedido-grid">${cardsHTML}</div>
+        <div class="pedido-resumen">
+          <h3 class="pedido-resumen__title">Resumen del pedido</h3>
+          <div class="pedido-resumen__line"></div>
+          ${resumenItems}
+          <div class="pedido-resumen__line"></div>
+          <div class="pedido-resumen__total">
+            <span class="pedido-resumen__total-label">Total estimado</span>
+            <span class="pedido-resumen__total-val">S/ ${total.toFixed(2)}</span>
+          </div>
+        </div>
+      `;
+
+    } catch (err) {
+      console.error(err);
+      contenido.innerHTML = `
+        <div class="pedido-error">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+          <p>Error al cargar el pedido. Intentá de nuevo más tarde.</p>
+        </div>`;
+      meta.innerHTML = '<span><i class="fa-solid fa-circle-xmark"></i> Error de conexión</span>';
+    }
+  });
+  </script>
+
+</body>
+</html>

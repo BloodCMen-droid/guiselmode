@@ -4,8 +4,9 @@
    Siempre cargar ANTES de modal-producto.js
 ══════════════════════════════════════════════════ */
 
-const CARRITO_KEY = 'gm_carrito';
+const CARRITO_KEY  = 'gm_carrito';
 const WHATSAPP_NUM = '949626583';
+const API_BASE     = 'https://catalogo-gym-backend-production.up.railway.app';
 
 // ── UTILS ────────────────────────────────────────
 function carritoGet() {
@@ -86,15 +87,70 @@ function carritoIsAdded(id) {
   return !!carritoGet().find(i => i.id === id);
 }
 
+// ── PEDIR — guarda en backend y manda WhatsApp ───
+async function carritoPedir(onSuccess) {
+  const items = carritoGet();
+  if (items.length === 0) return;
+
+  // Mostrar estado de carga en el botón
+  const btn = document.getElementById('btnPedirTodo');
+  if (btn) {
+    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Guardando pedido...';
+    btn.style.pointerEvents = 'none';
+    btn.style.opacity = '0.7';
+  }
+
+  try {
+    // POST al backend — guarda el pedido y devuelve UUID
+    const res = await fetch(`${API_BASE}/api/pedidos`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(items)
+    });
+
+    if (!res.ok) throw new Error('Error al guardar pedido');
+
+    const pedido = await res.json();
+    const uuid   = pedido.id;
+
+    // Link para el dueño
+    const linkDueno = `https://bloodcmen-droid.github.io/guiselmode/HTML/carritoControl.html?id=${uuid}`;
+
+    // Mensaje WhatsApp con el link del pedido
+    const titulos = items.map(p => `• ${p.titulo}`).join('\n');
+    const msg = `Hola! Me interesan estos productos:\n\n${titulos}\n\n🔗 Ver mi pedido completo:\n${linkDueno}`;
+    const waUrl = `https://wa.me/${WHATSAPP_NUM}?text=${encodeURIComponent(msg)}`;
+
+    // Vaciar carrito
+    carritoClear();
+    if (onSuccess) onSuccess();
+
+    // Abrir WhatsApp
+    window.open(waUrl, '_blank');
+
+  } catch (err) {
+    console.error(err);
+    carritoNotif('❌ Error al enviar pedido, intentá de nuevo');
+
+    // Restaurar botón si hay error
+    if (btn) {
+      btn.innerHTML = '<i class="fa-brands fa-whatsapp"></i> Pedir todo por WhatsApp';
+      btn.style.pointerEvents = '';
+      btn.style.opacity = '';
+    }
+  }
+}
+
 // ── Init badge al cargar ─────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   carritoBadgeUpdate();
 });
 
 // ── Exponer globalmente ──────────────────────────
-window.carritoAdd    = carritoAdd;
-window.carritoRemove = carritoRemove;
-window.carritoClear  = carritoClear;
-window.carritoGet    = carritoGet;
-window.carritoIsAdded = carritoIsAdded;
+window.carritoAdd         = carritoAdd;
+window.carritoRemove      = carritoRemove;
+window.carritoClear       = carritoClear;
+window.carritoGet         = carritoGet;
+window.carritoIsAdded     = carritoIsAdded;
 window.carritoBadgeUpdate = carritoBadgeUpdate;
+window.carritoPedir       = carritoPedir;

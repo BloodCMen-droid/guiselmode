@@ -114,8 +114,7 @@
   <script src="/guiselmode/JS/account.js"></script>
   <script>
   document.addEventListener('DOMContentLoaded', function () {
-    const WHATSAPP = 'https://wa.me/949626583';
-    const layout   = document.getElementById('carritoLayout');
+    const layout = document.getElementById('carritoLayout');
 
     function renderCarrito() {
       const items = carritoGet();
@@ -176,11 +175,10 @@
 
             <div class="carrito-resumen__line"></div>
 
-            <a href="${generarLinkWhatsapp(items)}" target="_blank"
-               class="btn-primary carrito-resumen__btn" id="btnPedirTodo"
-               onclick="setTimeout(() => { carritoClear(); renderCarrito(); }, 800)">
+            <button class="btn-primary carrito-resumen__btn" id="btnPedirTodo"
+                    onclick="carritoPedir(renderCarrito)">
               <i class="fa-brands fa-whatsapp"></i> Pedir todo por WhatsApp
-            </a>
+            </button>
 
             <button class="carrito-btn-vaciar" style="width:100%;margin-top:10px;justify-content:center"
                     onclick="vaciarCarrito()">
@@ -189,13 +187,6 @@
           </div>
         </div>
       `;
-    }
-
-    function generarLinkWhatsapp(items) {
-      const titulos = items.map(p => `• ${p.titulo}`).join('\n');
-      const links   = items.map(p => `🔗 ${p.url}`).join('\n');
-      const msg = `Hola! Me interesan estos productos:\n\n${titulos}\n\nLinks:\n${links}`;
-      return `${WHATSAPP}?text=${encodeURIComponent(msg)}`;
     }
 
     window.quitarItem = function(id) {
