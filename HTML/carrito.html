@@ -161,41 +161,44 @@
           </div>
           ${itemsHTML}
         </div>
-<div class="carrito-resumen__inner">
-  <h3 class="carrito-resumen__title">Resumen</h3>
-  <div class="carrito-resumen__line"></div>
 
-  <div class="carrito-resumen__tabla-header">
-    <span>Producto</span>
-    <span>Unidad</span>
-    <span>Conjunto</span>
-  </div>
+        <div class="carrito-resumen">
+          <div class="carrito-resumen__inner">
+            <h3 class="carrito-resumen__title">Resumen</h3>
+            <div class="carrito-resumen__line"></div>
 
-  ${items.map(p => `
-    <div class="carrito-resumen__item">
-      <span>${p.titulo}</span>
-      <span>S/ ${parseFloat(p.precioUnidad).toFixed(2)}</span>
-      <span>${p.precioTotal ? `S/ ${parseFloat(p.precioTotal).toFixed(2)}` : '—'}</span>
-    </div>`).join('')}
+            <div class="carrito-resumen__tabla-header">
+              <span>Producto</span>
+              <span>Unidad</span>
+              <span>Conjunto</span>
+            </div>
 
-  <div class="carrito-resumen__line"></div>
+            ${items.map(p => `
+              <div class="carrito-resumen__item">
+                <span>${p.titulo}</span>
+                <span>S/ ${parseFloat(p.precioUnidad).toFixed(2)}</span>
+                <span>${p.precioTotal ? `S/ ${parseFloat(p.precioTotal).toFixed(2)}` : '—'}</span>
+              </div>`).join('')}
 
-  <div class="carrito-resumen__item carrito-resumen__total-row">
-    <span>Total estimado</span>
-    <span>S/ ${items.reduce((a, p) => a + parseFloat(p.precioUnidad || 0), 0).toFixed(2)}</span>
-    <span>S/ ${items.reduce((a, p) => a + parseFloat(p.precioTotal || p.precioUnidad || 0), 0).toFixed(2)}</span>
-  </div>
+            <div class="carrito-resumen__line"></div>
 
-  <button class="btn-primary carrito-resumen__btn" id="btnPedirTodo"
-          onclick="carritoPedir(renderCarrito)">
-    <i class="fa-brands fa-whatsapp"></i> Pedir todo por WhatsApp
-  </button>
+            <div class="carrito-resumen__item carrito-resumen__total-row">
+              <span>Total estimado</span>
+              <span>S/ ${items.reduce((a, p) => a + parseFloat(p.precioUnidad || 0), 0).toFixed(2)}</span>
+              <span>S/ ${items.reduce((a, p) => a + parseFloat(p.precioTotal || p.precioUnidad || 0), 0).toFixed(2)}</span>
+            </div>
 
-  <button class="carrito-btn-vaciar" style="width:100%;margin-top:10px;justify-content:center"
-          onclick="vaciarCarrito()">
-    <i class="fa-solid fa-trash"></i> Vaciar carrito
-  </button>
-</div>
+            <button class="btn-primary carrito-resumen__btn" id="btnPedirTodo"
+                    onclick="carritoPedir(renderCarrito)">
+              <i class="fa-brands fa-whatsapp"></i> Pedir todo por WhatsApp
+            </button>
+
+            <button class="carrito-btn-vaciar" style="width:100%;margin-top:10px;justify-content:center"
+                    onclick="vaciarCarrito()">
+              <i class="fa-solid fa-trash"></i> Vaciar carrito
+            </button>
+          </div>
+        </div>
       `;
     }
 
@@ -208,7 +211,6 @@
       carritoClear();
       renderCarrito();
     };
-
 
     window.renderCarrito = renderCarrito;
 
