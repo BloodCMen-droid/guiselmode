@@ -126,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
       const CATEGORIA_MAP = window.CATEGORIA_MAP || {};
       const gridId   = CATEGORIA_MAP[producto.categoria?.codigo] || '';
-      const baseUrl  = `${location.origin}/guiselmode/HTML/Productos.html`;
+      const baseUrl  = `${location.origin}/guiselmode/HTML/productos.html`;
       const prodUrl  = gridId ? `${baseUrl}#${gridId}` : baseUrl;
       const whatsappMsg  = encodeURIComponent(`Hola! Me interesa: ${producto.titulo}\n🔗 ${prodUrl}`);
       const whatsappLink = `https://wa.me/949626583?text=${whatsappMsg}`;

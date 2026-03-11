@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function () {
         searchResults.innerHTML = `
           <div class="search-empty">
             <i class="fa-solid fa-shirt"></i>
-            Ve a <a href="/guiselmode/HTML/Productos.html" style="color:var(--accent-red)">Productos</a> para buscar desde el catálogo.
+            Ve a <a href="/guiselmode/HTML/productos.html" style="color:var(--accent-red)">Productos</a> para buscar desde el catálogo.
           </div>`;
         return;
       }

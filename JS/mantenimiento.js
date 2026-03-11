@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
   const user = JSON.parse(usuarioGuardado);
   if (user.rol !== 'admin') {
-    window.location.href = location.origin + '/guiselmode/HTML/Productos.html';
+    window.location.href = location.origin + '/guiselmode/HTML/productos.html';
     return;
   }
   /* ══════════════════════════════════════════
