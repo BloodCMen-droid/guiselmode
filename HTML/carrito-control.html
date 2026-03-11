@@ -264,6 +264,17 @@
         max-width: 100%;
       }
     }
+
+.pedido-resumen__item {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 8px 16px;
+  align-items: center;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  padding: 4px 0;
+}
+
   </style>
 </head>
 <body>
@@ -407,27 +418,38 @@
         </div>
       `).join('');
 
-      // Resumen items
-      const resumenItems = items.map(p => `
-        <div class="pedido-resumen__item">
-          <span>${p.titulo}</span>
-          <span>S/ ${parseFloat(p.precioUnidad).toFixed(2)}</span>
-        </div>
-      `).join('');
+      // Totales
+const totalUnidad   = items.reduce((a, p) => a + (parseFloat(p.precioUnidad) || 0), 0);
+const totalConjunto = items.reduce((a, p) => a + (parseFloat(p.precioTotal || p.precioUnidad) || 0), 0);
 
-      contenido.innerHTML = `
-        <div class="pedido-grid">${cardsHTML}</div>
-        <div class="pedido-resumen">
-          <h3 class="pedido-resumen__title">Resumen del pedido</h3>
-          <div class="pedido-resumen__line"></div>
-          ${resumenItems}
-          <div class="pedido-resumen__line"></div>
-          <div class="pedido-resumen__total">
-            <span class="pedido-resumen__total-label">Total estimado</span>
-            <span class="pedido-resumen__total-val">S/ ${total.toFixed(2)}</span>
-          </div>
-        </div>
-      `;
+// Resumen items
+const resumenItems = items.map(p => `
+  <div class="pedido-resumen__item">
+    <span>${p.titulo}</span>
+    <span>S/ ${parseFloat(p.precioUnidad).toFixed(2)}</span>
+    <span>${p.precioTotal ? `S/ ${parseFloat(p.precioTotal).toFixed(2)}` : '—'}</span>
+  </div>
+`).join('');
+
+contenido.innerHTML = `
+  <div class="pedido-grid">${cardsHTML}</div>
+  <div class="pedido-resumen">
+    <h3 class="pedido-resumen__title">Resumen del pedido</h3>
+    <div class="pedido-resumen__line"></div>
+    <div class="pedido-resumen__item" style="font-size:0.62rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-muted);padding-bottom:8px">
+      <span>Producto</span>
+      <span>Unidad</span>
+      <span>Conjunto</span>
+    </div>
+    ${resumenItems}
+    <div class="pedido-resumen__line"></div>
+    <div class="pedido-resumen__item" style="font-weight:700;color:var(--text-primary)">
+      <span style="font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted)">Total estimado</span>
+      <span>S/ ${totalUnidad.toFixed(2)}</span>
+      <span style="color:var(--accent-red)">S/ ${totalConjunto.toFixed(2)}</span>
+    </div>
+  </div>
+`;
 
     } catch (err) {
       console.error(err);

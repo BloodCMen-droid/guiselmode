@@ -327,3 +327,40 @@
   color: var(--accent-red);
   background: rgba(224,28,28,0.08);
 }
+
+/*RESUMEN*/
+
+.carrito-resumen__tabla-header {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 8px 16px;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 4px 0 8px;
+}
+
+.carrito-resumen__item {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 8px 16px;
+  align-items: center;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  padding: 4px 0;
+}
+
+.carrito-resumen__total-row {
+  color: var(--text-primary);
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.carrito-resumen__total-row span:first-child {
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
