@@ -101,9 +101,9 @@ document.addEventListener('DOMContentLoaded', function() {
   // Helper: redirigir según rol
   function redirectUser(user) {
     if (user.rol === 'admin') {
-      window.location.href = location.origin + '/guiselmode/HTML/mantenimiento.html';
+      window.location.href = location.origin + '/guiselmode/html/mantenimiento.html';
     } else {
-      window.location.href = location.origin + '/guiselmode/HTML/productos.html';
+      window.location.href = location.origin + '/guiselmode/html/productos.html';
     }
   }
 
@@ -177,7 +177,7 @@ document.addEventListener('DOMContentLoaded', function() {
         msg.textContent = '¡Cuenta creada! ✓';
         e.target.reset();
         setTimeout(() => {
-          window.location.href = location.origin + '/guiselmode/HTML/productos.html';
+          window.location.href = location.origin + '/guiselmode/html/productos.html';
         }, 1500);
       }
 

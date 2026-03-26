@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════
-   NOSOTROS.JS — JS/nosotros.js
+   NOSOTROS.JS — js/pages/nosotros.js
 ═══════════════════════════════════════════ */
 
 document.addEventListener('DOMContentLoaded', function () {

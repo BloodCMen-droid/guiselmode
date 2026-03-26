@@ -114,7 +114,7 @@ async function carritoPedir(onSuccess) {
     const uuid   = pedido.id;
 
     // Link para el dueño
-    const linkDueno = `https://bloodcmen-droid.github.io/guiselmode/HTML/carrito-control.html?id=${uuid}`;
+    const linkDueno = `https://bloodcmen-droid.github.io/guiselmode/html/carrito-control.html?id=${uuid}`;
 
     // Mensaje WhatsApp con el link del pedido
     const titulos = items.map(p => `• ${p.titulo}`).join('\n');

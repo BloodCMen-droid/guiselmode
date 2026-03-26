@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════
-   ACCOUNT PANEL — JS/account.js
+   ACCOUNT PANEL — js/pages/account.js
    Requiere: modal.js cargado antes
 ═══════════════════════════════════════════ */
 
