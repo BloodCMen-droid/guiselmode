@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
 (function () {
 
-  const API = 'https://catalogo-gym-backend-production.up.railway.app/api/usuarios';
+  const API = 'https://catalogo-gym-backend.onrender.com/api/usuarios';
 
   // Insertar modal en el body
   document.body.insertAdjacentHTML('beforeend', `

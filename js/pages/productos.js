@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-  const API          = 'https://catalogo-gym-backend-production.up.railway.app/api/productos';
-  const API_TALLAS   = 'https://catalogo-gym-backend-production.up.railway.app/api/producto-tallas/producto';
+  const API          = 'https://catalogo-gym-backend.onrender.com/api/productos';
+  const API_TALLAS   = 'https://catalogo-gym-backend.onrender.com/api/producto-tallas/producto';
   const WHATSAPP     = 'https://wa.me/949626583';
 
   let allProductos = []; 
@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', function () {
         try {
           const [resTallas, resImg] = await Promise.all([
             fetch(`${API_TALLAS}/${p.id}`),
-            fetch(`https://catalogo-gym-backend-production.up.railway.app/api/imagenes/producto/${p.id}/principal`)
+            fetch(`https://catalogo-gym-backend.onrender.com/api/imagenes/producto/${p.id}/principal`)
           ]);
           tallas = resTallas.ok ? await resTallas.json() : [];
           if (resImg.ok) {

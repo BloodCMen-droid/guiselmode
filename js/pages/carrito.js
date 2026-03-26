@@ -6,7 +6,7 @@
 
 const CARRITO_KEY  = 'gm_carrito';
 const WHATSAPP_NUM = '949626583';
-const API_BASE     = 'https://catalogo-gym-backend-production.up.railway.app';
+const API_BASE     = 'https://catalogo-gym-backend.onrender.com';
 
 // ── UTILS ────────────────────────────────────────
 function carritoGet() {

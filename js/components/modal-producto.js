@@ -78,9 +78,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     try {
       const [pRes, iRes, tRes] = await Promise.all([
-        fetch(`https://catalogo-gym-backend-production.up.railway.app/api/productos/${productoId}`),
-        fetch(`https://catalogo-gym-backend-production.up.railway.app/api/imagenes/producto/${productoId}`),
-        fetch(`https://catalogo-gym-backend-production.up.railway.app/api/producto-tallas/producto/${productoId}`)
+        fetch(`https://catalogo-gym-backend.onrender.com/api/productos/${productoId}`),
+        fetch(`https://catalogo-gym-backend.onrender.com/api/imagenes/producto/${productoId}`),
+        fetch(`https://catalogo-gym-backend.onrender.com/api/producto-tallas/producto/${productoId}`)
       ]);
 
       const producto = await pRes.json();

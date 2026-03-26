@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
   /* ══════════════════════════════════════════
      CONFIG
   ══════════════════════════════════════════ */
-  const API          = 'https://catalogo-gym-backend-production.up.railway.app/api';
+  const API          = 'https://catalogo-gym-backend.onrender.com/api';
   const API_TALLAS   = `${API}/producto-tallas/producto`;
   const CL_CLOUD     = 'imgapi';
   const CL_PRESET    = 'gym_preset';

@@ -5,7 +5,7 @@
 
 document.addEventListener('DOMContentLoaded', function () {
 
-  const API_USUARIOS  = 'https://catalogo-gym-backend-production.up.railway.app/api/usuarios';
+  const API_USUARIOS  = 'https://catalogo-gym-backend.onrender.com/api/usuarios';
   // Tu Cloudinary — reemplaza con tus datos
   const CLOUDINARY_URL    = 'https://api.cloudinary.com/v1_1/imgapi/image/upload';
   const CLOUDINARY_PRESET = 'gym_preset'; // upload preset sin firma (unsigned)

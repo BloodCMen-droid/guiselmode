@@ -66,11 +66,11 @@ document.addEventListener('DOMContentLoaded', function () {
       searchInput.focus();
       if (!window.allProductos?.length) {
         try {
-          const res   = await fetch('https://catalogo-gym-backend-production.up.railway.app/api/productos');
+          const res   = await fetch('https://catalogo-gym-backend.onrender.com/api/productos');
           const prods = await res.json();
           await Promise.all(prods.map(async p => {
             try {
-              const iRes = await fetch(`https://catalogo-gym-backend-production.up.railway.app/api/imagenes/producto/${p.id}/principal`);
+              const iRes = await fetch(`https://catalogo-gym-backend.onrender.com/api/imagenes/producto/${p.id}/principal`);
               if (iRes.ok) p._imgPrinc = await iRes.json();
             } catch {}
           }));

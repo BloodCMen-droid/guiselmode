@@ -4,7 +4,7 @@
 
 document.addEventListener('DOMContentLoaded', function () {
 
-  const API_COMMENTS = 'https://catalogo-gym-backend-production.up.railway.app/api/comentarios';
+  const API_COMMENTS = 'https://catalogo-gym-backend.onrender.com/api/comentarios';
   let selectedStars = 0;
   let currentUser   = null;
 
